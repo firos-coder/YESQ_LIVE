@@ -1,12 +1,17 @@
 const express = require('express')
-
-
+const config = require('./src/db/dbconfig').config
 const app = express()
+const sql = require('mssql')
+const router = express.Router()
+const bodyParser = require('body-parser')
 
-app.use(express.json())
-
-app.get('/', async (req, res) => {
-    res.send('<h1>Welcome to new project</h1>')
+const connection = new sql.ConnectionPool(config, () => {
+    console.log('DB connection successfull!');
 })
+
+app.use('./src/routers', router)
+app.use(bodyParser.json())
+
+require('./src/routers/user')(app, connection)
 
 module.exports = app
