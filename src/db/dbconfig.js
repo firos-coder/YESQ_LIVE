@@ -1,7 +1,7 @@
 exports.config = {
-    user: 'sa_salon',
-    server: '103.102.234.246',
-    database: 'SALON2020',
+    user: 'sa',
+    server: '128.199.25.0',
+    database: 'YESQ',
     password: 'dbadmin@2020',
     options: {
         trustedconnection: true,

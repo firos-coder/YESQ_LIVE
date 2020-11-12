@@ -1,5 +1,6 @@
 const sql = require('mssql')
 const bcrypt = require('bcrypt')
+const { request } = require('express')
 
 const doSignup = async (connection, uid, userData) => {
     return new Promise(async (resolve, reject) => {
@@ -35,17 +36,41 @@ const doSignup = async (connection, uid, userData) => {
         request.input('remarks', sql.NVarChar(sql.MAX), remarks)
         request.input('status', sql.NVarChar(50), status)
 
-        request.query('INSERT INTO USERACCOUNT (UID,GROUPID,USERID,PASWD,FULLNAME,FIRSTNAME,MIDDLENAME,LASTNAME,MOBILE,VERIFIED,EMAILID,CREATED,MODIFIED,DELETED,REMARKS,STATUS)VALUES(@uid,@group_id,@user_id,@password,@full_name,@first_name,@middle_name,@last_name,@mobile,@verified,@email,@created,@modified,@deleted,@remarks,@status)', (error, recordsets, returnValue) => {
+        request.query('INSERT INTO USERACCOUNT (UID,GROUPID,USERID,PASWD,FULLNAME,FIRSTNAME,MIDDLENAME,LASTNAME,MOBILE,VERIFIED,EMAILID,CREATED,MODIFIED,DELETED,REMARKS,STATUS)VALUES(@uid,@group_id,@user_id,@password,@full_name,@first_name,@middle_name,@last_name,@mobile,@verified,@email,@created,@modified,@deleted,@remarks,@status)', (error, result, returnValue) => {
             if (error != undefined) {
                 reject(response.status = false)
             } else
-                resolve(mobile)
+                resolve(response = {
+                    status: true,
+                    mobile:mobile
+                })
         })
     })
 
 
 }
+const doSignin = async (connection, userData) => {
+        let response = {}
+    return new Promise(async (resolve, reject) => {
+        const request = new sql.Request(connection)
+        const mobile = userData.mobile
+        request.input('mobile', sql.NVarChar(50),mobile)
+        await request.query('SELECT UID FROM USERACCOUNT WHERE USERID = @mobile', (error, result, returnValue) => {
+            if (result.rowsAffected[0] !== 1) {
+                reject( response = {
+                    status: false,
+                    errMsg: "Unable to sign in!",
+                    value : result
+               })
+            } else {
+                resolve("Logged in")
+            }
+            
+       } )
+    })
+}
 
 module.exports = {
-    doSignup
+    doSignup,
+    doSignin
 }
