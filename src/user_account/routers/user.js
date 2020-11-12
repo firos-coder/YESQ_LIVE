@@ -12,12 +12,7 @@ module.exports = function (app, connection) {
         await getIdmaster(relation, connection).then((result) => {
             return result
         }).then((uid) => {
-            doSignup(connection, uid, req.body, (error, result) => {
-                if (error) {
-                    return res.status(400).redirect('register', {
-                        error: "Unable to register!"
-                    })
-                }
+            doSignup(connection, uid, req.body).then((result) => {
                 const mobileSliced = result.mobile.slice(-4)
                 const mobile = '******' + mobileSliced;
                 const CValue = uid
@@ -28,6 +23,8 @@ module.exports = function (app, connection) {
                         mobile: mobile
                     })
                 })
+            }).catch((err) => {
+                console.log(err);
             })
         }).catch((err) => {
             console.log(err);

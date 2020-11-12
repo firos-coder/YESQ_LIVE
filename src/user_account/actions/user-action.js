@@ -39,7 +39,7 @@ const doSignup = async (connection, uid, userData) => {
             if (error != undefined) {
                 reject(response.status = false)
             } else
-                resolve(response.mobile = mobile)
+                resolve(mobile)
         })
     })
 
