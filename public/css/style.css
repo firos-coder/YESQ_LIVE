@@ -8918,3 +8918,9 @@ color: #fff !important;
 
 
 }
+.errorMessage{
+  color: red;
+  text-shadow: 0px 0px 2px rgba(150, 155, 150, 1);
+  text-align: left;
+  font-size: 13px;
+}

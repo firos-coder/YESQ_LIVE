@@ -38,11 +38,14 @@ const doSignup = async (connection, uid, userData) => {
 
         request.query('INSERT INTO USERACCOUNT (UID,GROUPID,USERID,PASWD,FULLNAME,FIRSTNAME,MIDDLENAME,LASTNAME,MOBILE,VERIFIED,EMAILID,CREATED,MODIFIED,DELETED,REMARKS,STATUS)VALUES(@uid,@group_id,@user_id,@password,@full_name,@first_name,@middle_name,@last_name,@mobile,@verified,@email,@created,@modified,@deleted,@remarks,@status)', (error, result, returnValue) => {
             if (error != undefined) {
-                reject(response.status = false)
+                reject(response = {
+                    status: false,
+                    errMsg: "Unable to create your account"
+                })
             } else
                 resolve(response = {
                     status: true,
-                    mobile:mobile
+                    mobile: mobile
                 })
         })
     })
@@ -50,23 +53,45 @@ const doSignup = async (connection, uid, userData) => {
 
 }
 const doSignin = async (connection, userData) => {
-        let response = {}
+    let response = {}
     return new Promise(async (resolve, reject) => {
         const request = new sql.Request(connection)
         const mobile = userData.mobile
-        request.input('mobile', sql.NVarChar(50),mobile)
-        await request.query('SELECT UID FROM USERACCOUNT WHERE USERID = @mobile', (error, result, returnValue) => {
-            if (result.rowsAffected[0] !== 1) {
-                reject( response = {
+        if (userData.mobile === '' || userData.password === '') {
+            reject(response = {
+                status: false,
+                errMsg: "Fill all the fields"
+            })
+        }
+        request.input('mobile', sql.NVarChar(50), mobile)
+        await request.query('SELECT UID,PASWD FROM USERACCOUNT WHERE USERID = @mobile', (error, result, returnValue) => {
+            if (error || result.rowsAffected[0] !== 1) {
+                reject(response = {
                     status: false,
-                    errMsg: "Unable to sign in!",
-                    value : result
-               })
+                    errMsg: "We cannot find an account with that mobile number"
+                })
             } else {
-                resolve("Logged in")
+                let user = {
+                    password: result.recordset[0].PASWD
+                }
+                bcrypt.compare(userData.password, user.password).then((status) => {
+                    if (status) {
+                        user = {
+                            UID: result.recordset[0].UID
+                        }
+                        resolve(user)
+                    } else {
+                        reject(
+                            response = {
+                                status: false,
+                                errMsg: "Your password is incorrect"
+                            }
+                        )
+                    }
+                })
             }
-            
-       } )
+
+        })
     })
 }
 

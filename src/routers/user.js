@@ -22,15 +22,15 @@ module.exports = function (app, connection) {
                     const CValue = uid
                     const uidParse = parseInt(uid)
                     const NValue = uidParse + 1
-                    
+
                     updateIdmaster(relation, CValue, NValue, connection).then((result) => {
                         res.render('verification', {
                             mobile: mobile
                         })
                     })
-                    
+
                 }
-                
+
             })
         }).catch((err) => {
             console.log(err);
@@ -44,7 +44,11 @@ module.exports = function (app, connection) {
 
     app.post('/signin', (req, res) => {
         doSignin(connection, req.body).then((response) => {
-            console.log(response);
+            res.render('index')
+        }).catch((error) => {
+            res.render('sign_in', {
+                errMsg: error.errMsg
+            })
         })
     })
 
