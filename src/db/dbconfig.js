@@ -1,8 +1,8 @@
 exports.config = {
-    user: 'sa',
-    server: '128.199.25.0',
-    database: 'YESQ',
-    password: 'dbadmin@2020',
+    user: 'yesq_dev',
+    server: '139.59.92.203',
+    database: 'YESQUSERACCOUNTDEV',
+    password: 'yesq_dev@2020',
     options: {
         trustedconnection: true,
         encrypt: true,

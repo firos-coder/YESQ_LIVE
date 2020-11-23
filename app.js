@@ -21,7 +21,7 @@ const connection = new sql.ConnectionPool(config, () => {
     console.log('DB connection successfull!');
 })
 
+require('./src/routers/token')(app, connection)
 require('./src/routers/user')(app, connection)
-require('./src/routers/token')(app,connection)
 
 module.exports = app
