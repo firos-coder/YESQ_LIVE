@@ -1,95 +1,69 @@
-const { doSignup, doSignin, findUser, sendOTP} = require('../user_account/user')
-const { getIdmaster, updateIdmaster } = require('../id_master/idMaster')
+const { doSignup, doSignin, findUser, sendOTP } = require('../user_account/user')
 const { response } = require('express')
-const postmanRequest = require('postman-request')
-const request = require('postman-request')
 
 module.exports = function (app, connection) {
 
-    app.get('/register', (req, res) => {
-        res.render('register')
-    })
-
     app.post('/register', async (req, res) => {
 
-        const relation = "USERACCOUNT"
-
-        await getIdmaster(relation, connection).then((result) => {
-            return result
-        }).then((uid) => {
-
-            doSignup(connection, uid, req.body).then((response) => {
+            doSignup(connection,req.body).then((response) => {
 
                 if (response.status === true) {
 
-                    const mobileSliced = response.mobile.slice(-4)
-                    const mobile = '******' + mobileSliced;
-                    const CValue = uid
-                    const uidParse = parseInt(uid)
-                    const NValue = uidParse + 1
-
-                    updateIdmaster(relation, CValue, NValue, connection).then((result) => {
-                        res.render('verification', {
-                            mobile: mobile
-                        })
-                    })
+                    const mobile = response.mobile
+                    res.status(200).json(mobile)
 
                 }
 
-            })
-        }).catch((err) => {
-            console.log(err);
+            }).catch((err) => {
+            res.status(400).json(err)
         })
-
-    })
-
-    app.get('/signin', (req, res) => {
-        res.render('sign_in')
-    })
+        })
 
     app.post('/signin', (req, res) => {
         doSignin(connection, req.body).then((response) => {
-            res.status(200).render('index')
+            res.status(200).json('Sign in Completed!')
         }).catch((error) => {
-            res.status(401).render('sign_in', {
-                errMsg: error.errMsg
-            })
+            res.status(401).json(error.errMsg)
         })
     })
 
-    app.get('/forgot_password', (req, res) => {
-        res.render('forgot_password')
-    })
-    app.post('/send_otp_sample', async (req, res) => {
-        const mobile1 = '9562060575'
-        const message = 'hi hello!!!!'
-        const api_url = `http://roundsms.com/api/sendhttp.php?authkey=MDdhMzgzZjQ4OTd&mobiles=${mobile1}&message=${message}&sender=ROOTME&type=1&route=2`
-        postmanRequest({ api_url, json: true }, (error, result) => {
-            if (error) {
-                res.send(error)
-            }
-            res.send(result)
-        })
-
-    })
     app.post('/send_otp', async (req, res) => {
+
         await findUser(connection, req.body, async (error, result) => {
             if (error) {
-                return res.status(400).send(error)
+                return res.status(400).json(error)
             }
-            const mobile = result.mobile
+            const userId = result.userId
             const uid = result.uid
-            await sendOTP(connection, mobile, uid, (err,result) => {
+
+            await sendOTP(connection, userId, uid, async (err,response) => {
                 if (err) {
-                    return res.status(400).send(err)
+                    return res.status(400).json(err)
                 }
-                res.status(200).send(result)
+                const http = require('http');
+                
+                const mobile = response.mobile
+                const message = response.message
+
+                await http.get('http://roundsms.com/api/sendhttp.php?authkey=MDdhMzgzZjQ4OTd&mobiles='+mobile+'&message='+message+'&sender=ROOTME&type=1&route=2', (resp) => {
+                    let data = ''
+
+                    resp.on('data', (chunk) => {
+                        data += chunk;
+                    });
+                    resp.on('end', () => {
+                        res.render('verification')
+                    });
+                    
+                }).on("error", (err) => {
+                    res.send("Error: " + err.message);
+                });
             })
         })
     })
 
-    app.get('*', (req, res) => {
-        res.render('404')
+    app.post('/verification', async (req, res) => {
+        
     })
 
 
