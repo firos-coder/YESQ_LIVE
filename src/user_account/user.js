@@ -127,7 +127,7 @@ const findUser = async (connection, userData, callback) =>
     const request = new sql.Request(connection)
 
     request.input('mobile', sql.NVarChar(50), mobile)
-    await request.query('SELECT UID,USERID FROM USERACCOUNT WHERE U SERID = @mobile', (error, result, returnValue) =>
+    await request.query('SELECT UID,USERID FROM USERACCOUNT WHERE USERID = @mobile', (error, result, returnValue) =>
     {
         if (error || result.rowsAffected[0] !== 1)
         {
@@ -184,7 +184,7 @@ const sendOTP = async (connection, userId, uid, callback) =>
         else
             callback(undefined, response =
             {
-                mobile:mobile,
+                mobile:userId,
                 message:message
             })
             
@@ -198,4 +198,4 @@ module.exports =
     doSignin,
     findUser,
     sendOTP
-}
+} 

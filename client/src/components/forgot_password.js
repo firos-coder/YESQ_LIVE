@@ -3,9 +3,11 @@ import React from 'react'
 import Landing from '../IMAGES/landing.svg'
 import { useFormik } from 'formik'
  import * as Yup from 'yup'
- import axios from 'axios'
+import axios from 'axios'
+ import {useHistory} from 'react-router-dom'
 
 export default function Forgotpassword() {
+    const History = useHistory()
     const formik = useFormik({
         initialValues: {
 			mobile:""
@@ -20,8 +22,8 @@ export default function Forgotpassword() {
     onSubmit: values => {
       
       console.log('form data',values)
-      axios.post("",values).then(response=>{
-          
+      axios.post("/send_otp",values).then(response=>{
+          History.push('/Home')
       })
     }
   });

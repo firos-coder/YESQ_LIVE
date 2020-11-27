@@ -9,7 +9,8 @@ app.use('./src/routers', router)
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const connection = new sql.ConnectionPool(config, () => {
+const connection = new sql.ConnectionPool(config, () =>
+{
     console.log('DB connection successfull!');
 })
 

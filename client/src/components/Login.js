@@ -92,8 +92,7 @@ export default function Login()
                                     </div>
                                     <div className="clearfix add_bottom_10">
                                         <div className="float-right mt-1">
-                                            <p className='forgotpswd-link'>Forgot
-                                                Password?</p>
+                                            <p><Link to='/Forgot' className='forgotpswd-link'>Forgot password?</Link></p>
                                         </div>
                                     </div>
                                     <button type="submit" className="btn_1 rounded full-width">SIGN IN</button>

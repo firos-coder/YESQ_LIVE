@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom"
 import Login from './components/Login'
 import Register from './components/Register'
 import Home from './components/Home'
+import Forgot from './components/forgot_password'
 
 export default function App() {
   return (
@@ -17,7 +18,10 @@ export default function App() {
         </Route>
         <Route path="/Home">
       <Home/>
-     </Route>
+        </Route>
+        <Route path="/Forgot">
+          <Forgot />
+        </Route>
       
 
       </Router>
