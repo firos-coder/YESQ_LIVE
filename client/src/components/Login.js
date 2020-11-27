@@ -35,7 +35,6 @@ export default function Login()
             const trimValues = {mobile:mobTrim,password:pswdTrim}
 			console.log('form data',trimValues)
 			  axios.post("/signin",trimValues).then(response=>{
-                  console.log(response);
                   history.push('/Home');
               }).catch((err) => {
                   setError("Unable to login!");

@@ -121,8 +121,6 @@ const doSignin = async (connection, userData) =>
     })
 }
 
-//Check if the mobile number already exists
-
 const findUser = async (connection, userData, callback) =>
 {
     const mobile = userData.mobile

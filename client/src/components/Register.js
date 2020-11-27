@@ -86,7 +86,7 @@ export default function Register() {
 									</div>
 									<div className="form-group">
                 						<label htmlFor="" className="input-label">Mobile Number</label>
-										<input type="text"
+										<input type="number"
 												name="mobile" 
 												id="mobile"
 												value={formik.values.mobile}
