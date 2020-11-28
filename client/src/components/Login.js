@@ -28,14 +28,16 @@ export default function Login()
 			  .required("Required!")
 			
 		  }),
-        onSubmit: values => {
-               setError(null)
-			 let mobTrim=values.mobile.trim()
-             let pswdTrim=values.password.trim()
+        onSubmit: (values,onSubmitprops) => {
+            setError(null)
+			let mobTrim=values.mobile.trim()
+            let pswdTrim=values.password.trim()
             const trimValues = {mobile:mobTrim,password:pswdTrim}
-			console.log('form data',trimValues)
-			  axios.post("/signin",trimValues).then(response=>{
-                  history.push('/Home');
+			
+			axios.post("/signin",trimValues).then(response=>{
+                 onSubmitprops.resetForm()
+                
+                 history.push('/Home');
               }).catch((err) => {
                   setError("Unable to login!");
               })
@@ -45,11 +47,8 @@ export default function Login()
         <div className='white'>
             <div className="container">
 		        <div className="row d-flex align-items-center vh-100">
-
                     <div className="col-md-6 card-new">
-
                         <div className="card1 pb-5">
-
                             <div className="row px-3  mt-4 mb-5 border-line"> 
                                 <img src={Landing}  alt='logo'/>
                             </div>
@@ -64,9 +63,9 @@ export default function Login()
                                     {errordiv}
                                 </div>
 
-                                <form   class="signInForm" onSubmit={formik.handleSubmit} autoComplete="off">
+                                <form   className="signInForm" onSubmit={formik.handleSubmit} autoComplete="off">
                                     <div className="form-group">
-                                        <label for="" className="input-label">Mobile Number</label>
+                                        <label htmlFor="" className="input-label">Mobile Number</label>
                                         <input 
                                         type="text" 
                                         className="form-control signInMobile" 
@@ -78,7 +77,7 @@ export default function Login()
 
                                     </div>
                                     <div className="form-group">
-                                        <label for="" className="input-label">Password</label>
+                                        <label htmlFor="" className="input-label">Password</label>
                                         <input
                                         type="password"
                                         className="form-control signInPassword"
@@ -97,11 +96,10 @@ export default function Login()
                                     </div>
                                     <button type="submit" className="btn_1 rounded full-width">SIGN IN</button>
                                     <div className="text-center add_top_10">
-                                        <p>You don't have an account?<span className='signup-link'><Link to='/'>Sign up!</Link></span> </p>
+                                        <p>You don't have an account?<span className='signup-link'><Link className='signup-link-clr' to='/'>Sign up!</Link></span> </p>
                                     </div>
                                 </form>
-
-					        </aside>
+                            </aside>
 				        </div>
 			        </div>
 		        </div>

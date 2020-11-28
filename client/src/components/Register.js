@@ -1,15 +1,19 @@
-import React,{useState} from 'react'
-import '../CSS/Register.css'
+import React  from 'react'
+import '../CSS/register.css'
 import Landing from '../IMAGES/landing.svg'
 import { useFormik } from 'formik'
- import * as Yup from 'yup'
- import axios from 'axios'
+import * as Yup from 'yup'
+import axios from 'axios'
 import { Link } from "react-router-dom"
 import {useHistory} from 'react-router-dom'
 
 
-export default function Register() {
+export default function Register() 
+{
 	const history = useHistory()
+	const phoneRegex = RegExp(
+		/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
+	  );
 	const formik = useFormik({
         initialValues: {
 			name: "",
@@ -18,39 +22,45 @@ export default function Register() {
 			confirm_password: ""
 			
 		},
-		validationSchema: Yup.object({
+		 
+		validationSchema: Yup.object
+		({		
+			 	name: Yup.string()
+				
+					.required("Enter your name"),
+				mobile: Yup.string()
+				    .matches(phoneRegex, "Invalid Mobile Number")
+				    // .min(10, "Mobile number must be 10 digits")
+					// .max(10, "Mobile number must be 10 digits")
+					.required("Enter your mobile number"),
+				password: Yup.string()
+					.min(6, "Password must be at least 6 charecters")
+					.required("Enter your password"),
+				confirm_password: Yup.string()
+					.oneOf([Yup.ref("password")], "Password's not match")
+				    .required("Re-enter your password")
+			}),
 			
-            name: Yup.string()
-                
-			 .required("Enter your name"),
-			mobile: Yup.string()
-				
-				
-				.min(10, "Mobile number must be 10 digits")
-				.max(10, "Mobile number must be 10 digits")
-				.required("Enter your mobile number"),
-			password: Yup.string()
-		
-			  .min(6, "Password must be at least 6 charecters")
-			  .required("Enter your password"),
-			confirm_password: Yup.string()
-		
-			  .oneOf([Yup.ref("password")], "Password's not match")
-			  .required("Re-enter your password")
-		}),
-		
-		  onSubmit: values => {
-			  axios.post("/register", values).then(res => {
-				
-				history.push('/login')
+			onSubmit: (values,onSubmitprops) => 
+			{		let nameTrim = values.name.trim()
+					let mobileTrim = values.mobile
+					let passwordTrim = values.password.trim()
+					let confirm_passwordTrim = values.confirm_password.trim()
+					const Values = {name:nameTrim,mobile:mobileTrim,password:passwordTrim,confirm_password:confirm_passwordTrim}
+					axios.post("/register", Values).then(res =>
+					{
+					onSubmitprops.resetForm()
 					
-			  }).catch(errors => {
-				console.log(errors);
-			})
-		  }
+					history.push('/login')
+						
+					}).catch(errors =>
+					{
+					console.log(errors);
+					})
+			}
 		});
 	
-	return (
+	return(
 		
         <div>
             <div className="container">
@@ -61,8 +71,7 @@ export default function Register() {
                                 <img src={Landing}  alt='logo'/> 
                             </div>
                         </div>
-
-			        </div>
+					</div>
 			        <div className="col-md-5 m-auto">
 			            <div id="login">
 				            <aside>
@@ -77,8 +86,8 @@ export default function Register() {
 										 type="name"
 										 className="form-control"
 										 name="name"
-										 value={formik.values.full_name}
-										  onChange={formik.handleChange}
+										 value={formik.values.name}
+										 onChange={formik.handleChange}
 										 onBlur={formik.handleBlur}
 										// {...formik.getFieldProps('name')}
 										  id="name"/>
@@ -86,12 +95,16 @@ export default function Register() {
 									</div>
 									<div className="form-group">
                 						<label htmlFor="" className="input-label">Mobile Number</label>
-										<input type="number"
+										<input  type='number'
+												
 												name="mobile" 
 												id="mobile"
+												
 												value={formik.values.mobile}
-												onChange={formik.handleChange}
-												onBlur={formik.handleBlur}
+												 onChange={formik.handleChange}
+												 onBlur={formik.handleBlur}
+												onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+												
 												// {...formik.getFieldProps('mobile')}
 										 		className="form-control"  />
 												 {formik.touched.mobile && formik.errors.mobile && (<div className="errorMessage">{formik.errors.mobile}</div>)}
@@ -115,8 +128,8 @@ export default function Register() {
                 						<label htmlFor="" className="input-label">Confirm Password</label>
 										<input type="password"
 											name="confirm_password"
-											 id="confirmPassword"
-											 value={formik.values.confirmPassword}
+											 id="confirm_password"
+											 value={formik.values.confirm_password}
 											 onBlur={formik.handleBlur}
 											 onChange={formik.handleChange}
 											// {...formik.getFieldProps('confirm_password')}
@@ -125,7 +138,6 @@ export default function Register() {
 											/>
 											{formik.touched.confirm_password && formik.errors.confirm_password && (<div className="errorMessage">{formik.errors.confirm_password}</div>)}
 											
-					
 									</div>
 									<div className="clearfix add_bottom_15">
 										<div className="text-center">
@@ -133,7 +145,7 @@ export default function Register() {
                             			</div>
 									</div>
 									 <button type="submit" className="btn_1 rounded full-width">CONTINUE</button>
-									 <div className="text-center add_top_10"><p>Already have an account? <span className='login-link'><Link to ='/Login'>Log In!</Link>  </span></p></div> 
+									 <div className="text-center add_top_10"><p>Already have an account? <span className='login-link'><Link className='log-link-clr' to ='/Login'>Log In!</Link>  </span></p></div> 
 								</form>
                             </aside>
 	                    </div>

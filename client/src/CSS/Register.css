@@ -317,8 +317,11 @@ body {
   -webkit-appearance: none;
   margin: 0;
 }
-span.login-link{
+.log-link-clr{
   color: #007bff;
   font-weight: 600;
   cursor: pointer;
+}
+.log-link-clr:hover{
+  color: #007bff;
 }

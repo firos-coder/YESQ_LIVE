@@ -218,3 +218,12 @@ Link span .signup-link {
 .d-none {
   display: none !important;
 }
+
+.signup-link-clr{
+  color: #007bff;
+  font-weight: 600;
+  cursor: pointer;
+}
+.signup-link-clr:hover{
+  color: #007bff;
+}

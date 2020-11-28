@@ -1,8 +1,8 @@
 import React from 'react'
 import { BrowserRouter as Router, Route } from "react-router-dom"
-import Login from './components/Login'
-import Register from './components/Register'
-import Home from './components/Home'
+import Login from './components/login'
+import Register from './components/register'
+import Home from './components/home'
 import Forgot from './components/forgot_password'
 
 export default function App() {
