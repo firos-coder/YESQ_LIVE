@@ -89,7 +89,7 @@ export default function Register()
 										 value={formik.values.name}
 										 onChange={formik.handleChange}
 										 onBlur={formik.handleBlur}
-										// {...formik.getFieldProps('name')}
+										// {.....formik.getFieldProps('name')}
 										  id="name"/>
 										   {formik.touched.name && formik.errors.name && (<div className="errorMessage">{formik.errors.name}</div>)} 
 									</div>
