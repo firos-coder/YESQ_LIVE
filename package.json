@@ -21,7 +21,8 @@
     "hbs": "^4.1.1",
     "mssql": "^6.2.3",
     "node-fetch": "^2.6.1",
-    "postman-request": "^2.88.1-postman.27"
+    "postman-request": "^2.88.1-postman.27",
+    "react-otp-input": "^2.3.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
