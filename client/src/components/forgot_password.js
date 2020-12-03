@@ -1,10 +1,10 @@
 import React from 'react'
- import '../CSS/forgotpassword.css'
+import '../CSS/forgotpassword.css'
 import Landing from '../IMAGES/landing.svg'
 import { useFormik } from 'formik'
- import * as Yup from 'yup'
+import * as Yup from 'yup'
 import axios from 'axios'
- import {useHistory} from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
 
 export default function Forgotpassword()
 {
@@ -30,7 +30,7 @@ export default function Forgotpassword()
                     History.push
                     ({
                         pathname: '/verification',
-                        state: { detail: response }
+                        state: { detail: values.mobile}
                     })
                 })
             }

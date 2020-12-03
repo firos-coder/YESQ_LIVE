@@ -1,48 +1,39 @@
-import React, { Component } from 'react';
+import React, {useState} from 'react';
 import OtpInput from 'react-otp-input';
 import '../CSS/verification.css'
 import Landing from '../IMAGES/landing.svg'
 import axios from 'axios'
-import { Redirect } from 'react-router-dom';
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
-export default class App extends Component
+export default function App()
  {
-        constructor()
-        {
-            super()
-            this.state = 
-            {
-                otp: '',
-                error: " ",
-                propValue: this.props.location.state.propOne
-            }
-            const location = useLocation();
+    const[otp,setOtp] = useState('')
+    const[error,setError] = useState('')
+    const location = useLocation();
             useEffect(() => {
-         console.log(location.pathname); // result: '/secondpage'
-         
-       console.log(location.state.detail); // result: 'some_value'
-    }, [location]);
-           
-        }
+                console.log(location.pathname); // result: '/secondpage'
+               
+                console.log(location.state.detail); // result: 'some_value'
+            }, [location]);
         
-        handleChange = otp => 
+        
+       const  handleChange = otp => 
         {
-        this.setState({ otp });
+            setOtp(otp)
         }
      
-         handleSubmit = (event) =>
+        const  handleSubmit = (event) =>
         {
             event.preventDefault()
-            const value = this.state.otp
+            const value = otp
             const valueLength = value.length
             if(valueLength === 6)
             {
-                this.setState({otp: ''})
+                setOtp('')
                  axios.post("",value).then(response=>{
                     
-                    return  <Redirect  to="" />
+                    
                    
                      
                   }).catch((err) => {
@@ -52,15 +43,15 @@ export default class App extends Component
             else
             {
                 console.log("enter valid otp")
-                this.setState({error:"Enter Valid OTP"})
+                setError('Enter valid OTP')
             }
       
     }
 
     
  
-        render()
-         {
+       
+         
             return(
                     <div className='white'>
                         <div className="container">
@@ -80,16 +71,16 @@ export default class App extends Component
                                             </div>
                                             <div className="text-center add_top_10 font-12 verifictn-subhead">Please type the verification code<br/>
                                                 send to {location.state.detail}
-                                                {this.state.error?<div className="otp-errormsg">{this.state.error}</div> : ''}
+                                                {error?<div className="otp-errormsg">{error}</div> : ''}
                                             </div>
-                                            <form onSubmit={this.handleSubmit.bind(this)}>
+                                            <form onSubmit={handleSubmit}>
                                                 <div className="form-group">
                                                     <div className="code_group">
                                                         <div className="row code-box-marg"></div>
                                                             <OtpInput
                                                                                         
-                                                                value={this.state.otp}
-                                                                onChange={this.handleChange}
+                                                                value={otp}
+                                                                onChange={handleChange}
                                                                 numInputs={6}
                                                                 separator={<span>  </span>}
                                                                 isInputNum="true"
@@ -113,5 +104,5 @@ export default class App extends Component
                         </div>
                     </div>
                 );
-        }
+        
 }
