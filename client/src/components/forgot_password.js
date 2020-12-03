@@ -6,27 +6,35 @@ import { useFormik } from 'formik'
 import axios from 'axios'
  import {useHistory} from 'react-router-dom'
 
-export default function Forgotpassword() {
+export default function Forgotpassword()
+{
     const History = useHistory()
-    const formik = useFormik({
-        initialValues: {
-			mobile:""
-		},
-        validationSchema: Yup.object({
-			mobile: Yup.string()
+    const formik = useFormik
+    ({
+            initialValues:
+            {
+			    mobile:""
+		    },
+            validationSchema: Yup.object
+            ({
+			    mobile: Yup.string()
                 .min(10, "To short")
 				.max(10, "To long")
                 .required("Required!")
         
-         }),
-    onSubmit: values => {
-      
-      console.log('form data',values)
-      axios.post("/send_otp",values).then(response=>{
-          History.push('/Home')
-      })
-    }
-  });
+            }),
+            onSubmit: values =>
+            {
+                axios.post("/send_otp", values).then(response =>
+                {
+                    History.push
+                    ({
+                        pathname: '/verification',
+                        state: { detail: response }
+                    })
+                })
+            }
+    });
     return (
         <div className="white">
             <div className="container">

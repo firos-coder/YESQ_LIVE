@@ -4,6 +4,7 @@ import Login from './components/login'
 import Register from './components/register'
 import Home from './components/home'
 import Forgot from './components/forgot_password'
+import Verification from './components/verification'
 
 export default function App() {
   return (
@@ -21,6 +22,9 @@ export default function App() {
         </Route>
         <Route path="/Forgot">
           <Forgot />
+        </Route>
+        <Route path="/verification">
+          <Verification />
         </Route>
       
 

@@ -57,7 +57,7 @@ module.exports = function (app, connection)
                 const mobile = response.mobile
                 const message = response.message
 
-                await http.get('http://roundsms.com/api/sendhttp.php?authkey=MDdhMzgzZjQ4OTd&mobiles=' + mobile + '&message=' + message + '&sender=ROOTME&type=1&route=2', (resp) =>
+                await http.get('http://sapteleservices.com/SMS_API/sendsms.php?username=rootme&password=pass@2020&mobile='+mobile+'&sendername=ROTMPK&message='+message+'&routetype=1', (resp) =>
                 {
                     let data = ''
 
@@ -67,7 +67,7 @@ module.exports = function (app, connection)
                     });
                     resp.on('end', () =>
                     {
-                        res.json(data)
+                        res.json(mobile)
                     });
                     
                 }).on("error", (err) =>

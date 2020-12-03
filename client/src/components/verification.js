@@ -3,7 +3,9 @@ import OtpInput from 'react-otp-input';
 import '../CSS/verification.css'
 import Landing from '../IMAGES/landing.svg'
 import axios from 'axios'
-import {Redirect} from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 export default class App extends Component
  {
@@ -13,8 +15,15 @@ export default class App extends Component
             this.state = 
             {
                 otp: '',
-                error:" "
+                error: " ",
+                propValue: this.props.location.state.propOne
             }
+            const location = useLocation();
+            useEffect(() => {
+         console.log(location.pathname); // result: '/secondpage'
+         
+       console.log(location.state.detail); // result: 'some_value'
+    }, [location]);
            
         }
         
@@ -30,7 +39,6 @@ export default class App extends Component
             const valueLength = value.length
             if(valueLength === 6)
             {
-                console.log(value)
                 this.setState({otp: ''})
                  axios.post("",value).then(response=>{
                     
@@ -47,7 +55,9 @@ export default class App extends Component
                 this.setState({error:"Enter Valid OTP"})
             }
       
-        }
+    }
+
+    
  
         render()
          {
@@ -69,7 +79,7 @@ export default class App extends Component
                                                 <h3>Verification</h3>
                                             </div>
                                             <div className="text-center add_top_10 font-12 verifictn-subhead">Please type the verification code<br/>
-                                                send to 1234567890
+                                                send to {location.state.detail}
                                                 {this.state.error?<div className="otp-errormsg">{this.state.error}</div> : ''}
                                             </div>
                                             <form onSubmit={this.handleSubmit.bind(this)}>
@@ -90,7 +100,7 @@ export default class App extends Component
                                                             
                                                     </div>
                                                 </div>
-                                                <button type="submit" class="btn_1 rounded full-width" >SIGN IN</button>
+                                                <button type="submit" class="btn_1 rounded full-width" >VERIFY</button>
                                                 <div class="text-center add_top_10">
                                                         Resend verification code
                                                 </div>

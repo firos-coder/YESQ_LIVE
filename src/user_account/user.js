@@ -146,7 +146,7 @@ const sendOTP = async (connection, userId, uid, callback) =>
         let response = {}
         const secretid = '1'
         const randNumber = Math.floor((Math.random() * 899999) + 100000);
-        const message = randNumber + '  is your verification code'
+    const message = randNumber + '  is your YESQ security code. Enter the code on YESQ to verify your account.'
         const receiverType = 'USER'
         const appName = '1'
         const module = '1'
