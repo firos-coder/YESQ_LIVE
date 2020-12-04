@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import '../CSS/forgotpassword.css'
 import Landing from '../IMAGES/landing.svg'
 import { useFormik } from 'formik'
@@ -8,6 +8,8 @@ import {useHistory} from 'react-router-dom'
 
 export default function Forgotpassword()
 {
+    const [error, setError] = useState(null)
+    const errordiv = error ? <div className="login-errormsg">{error}</div> : '';
     const History = useHistory()
     const formik = useFormik
     ({
@@ -30,8 +32,10 @@ export default function Forgotpassword()
                     History.push
                     ({
                         pathname: '/verification',
-                        state: { detail: values.mobile}
+                        state: { detail: response.data }
                     })
+                }).catch((err) => {
+                 setError(err.response.data);   
                 })
             }
     });
@@ -51,13 +55,14 @@ export default function Forgotpassword()
 					        <aside>
 						        <div className="text-center">
 							        <h3 >FORGOT PASSWORD?</h3>
-							        <p className="errorMessage">
-                                        errMsg
-                                    </p>
 						        </div>
                                     <form onSubmit={formik.handleSubmit}  className="forgot_password_form">
                                         <div className="float-right mt-1 forgot_label_msg">
-                                            <p>Enter the email address or mobile phone number associated with your YESQ account.</p>
+                                        <p>Enter the email address or mobile phone number associated with your YESQ account.</p>
+                                        
+							        <p className="errorMessage">
+                                       {errordiv}
+                                    </p>
                                         </div>
                                         <div className="form-group">
                                             <label htmlFor="" className="input-label">Mobile Number</label>

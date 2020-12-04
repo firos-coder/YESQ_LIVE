@@ -30,8 +30,12 @@ export default function App()
             const valueLength = value.length
             if(valueLength === 6)
             {
+                const inputs = {
+                    code:value,
+                    mobile:location.state.detail
+                }
                 setOtp('')
-                 axios.post("",value).then(response=>{
+                 axios.post("/verification",inputs).then(response=>{
                     
                     
                    
@@ -70,7 +74,7 @@ export default function App()
                                                 <h3>Verification</h3>
                                             </div>
                                             <div className="text-center add_top_10 font-12 verifictn-subhead">Please type the verification code<br/>
-                                                send to {location.state.detail}
+                                                send to {'...'+location.state.detail.slice(-4)}
                                                 {error?<div className="otp-errormsg">{error}</div> : ''}
                                             </div>
                                             <form onSubmit={handleSubmit}>
@@ -93,7 +97,7 @@ export default function App()
                                                 </div>
                                                 <button type="submit" class="btn_1 rounded full-width" >VERIFY</button>
                                                 <div class="text-center add_top_10">
-                                                        Resend verification code
+                                                        <button> Resend verification code</button>
                                                 </div>
                                                             
                                             </form>

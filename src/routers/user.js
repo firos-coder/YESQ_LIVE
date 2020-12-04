@@ -46,16 +46,17 @@ module.exports = function (app, connection)
             const userId = result.userId
             const uid = result.uid
 
-            await sendOTP(connection, userId, uid, async (err, response) =>
+            await sendOTP(connection, userId, uid, async (error, response) =>
             {
-                if (err)
+                if (error)
                 {
-                    return res.status(400).json(err)
+                    return res.status(400).json(error)
                 }
                 const http = require('http');
                 
                 const mobile = response.mobile
                 const message = response.message
+                const errMsg = "YESQ verification faild"
 
                 await http.get('http://sapteleservices.com/SMS_API/sendsms.php?username=rootme&password=pass@2020&mobile='+mobile+'&sendername=ROTMPK&message='+message+'&routetype=1', (resp) =>
                 {
@@ -72,7 +73,7 @@ module.exports = function (app, connection)
                     
                 }).on("error", (err) =>
                 {
-                    res.send("Error: " + err.message);
+                    res.json(errMsg);
                 });
             })
         })

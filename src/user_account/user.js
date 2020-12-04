@@ -144,9 +144,9 @@ const sendOTP = async (connection, userId, uid, callback) =>
 {
     const request = new sql.Request(connection)
         let response = {}
-        const secretid = '1'
+        const mode = 'INSERT'
         const randNumber = Math.floor((Math.random() * 899999) + 100000);
-    const message = randNumber + '  is your YESQ security code. Enter the code on YESQ to verify your account.'
+        const message = randNumber + '  is your YESQ security code. Enter the code on YESQ to verify your account.'
         const receiverType = 'USER'
         const appName = '1'
         const module = '1'
@@ -155,27 +155,26 @@ const sendOTP = async (connection, userId, uid, callback) =>
         const status = "ACTIVE"
         const otpDuration = 6.0
         const indiaTime = new Date()
-        
-        request.input('secretid', sql.NVarChar(50), secretid)
-        request.input('uid', sql.NVarChar(50), uid)
-        request.input('receiverType', sql.NVarChar(50), receiverType)
-        request.input('appName', sql.NVarChar(50), appName)
-        request.input('module', sql.NVarChar(50), module)
-        request.input('sendto', sql.NVarChar(50), userId)
-        request.input('otpCode', sql.NVarChar(50), randNumber)
-        request.input('otpDate', sql.Date, indiaTime)
-        request.input('otpTime', sql.Time, indiaTime)
-        request.input('otpDuration', sql.Decimal(10,2), otpDuration)
-        request.input('otpStatus', sql.NVarChar(50), otpStatus)
-        
-        request.input('created', sql.DateTime2, new Date())
-        request.input('modified', sql.DateTime2, new Date())
-        request.input('deleted', sql.DateTime2, new Date())
-        request.input('userid', sql.NVarChar(sql.MAX), userId)
-        request.input('remarks', sql.NVarChar(sql.MAX), remarks)
-        request.input('status', sql.NVarChar(50), status)
+    
+        request.input('MODE', sql.NVarChar(50), mode)
+        request.input('RECEIVERID', sql.NVarChar(50), uid)
+        request.input('RECEIVERTYPE', sql.NVarChar(50), receiverType)
+        request.input('APPNAME', sql.NVarChar(50), appName)
+        request.input('MODULE', sql.NVarChar(50), module)
+        request.input('SENDTO', sql.NVarChar(50), userId)
+        request.input('OTPCODE', sql.NVarChar(50), randNumber)
+        request.input('OTPDATE', sql.Date, indiaTime)
+        request.input('OTPTIME', sql.Time, indiaTime)
+        request.input('OTPDURATION', sql.Decimal(10,2), otpDuration)
+        request.input('OTPSTATUS', sql.NVarChar(50), otpStatus)
+        request.input('CREATED', sql.DateTime2, new Date())
+        request.input('MODIFIED', sql.DateTime2, new Date())
+        request.input('DELETED', sql.DateTime2, new Date())
+        request.input('USERID', sql.NVarChar(sql.MAX), userId)
+        request.input('REMARKS', sql.NVarChar(sql.MAX), remarks)
+        request.input('STATUS', sql.NVarChar(50), status)
 
-    await request.query('INSERT INTO OTPSECRETS (SECRETID,RECEIVERID,RECEIVERTYPE,APPNAME,MODULE,SENDTO,OTPCODE,OTPDATE,OTPTIME,OTPDURATION,OTPSTATUS,CREATED,MODIFIED,DELETED,USERID,REMARKS,STATUS)VALUES(@secretid,@uid,@receiverType,@appName,@module,@sendto,@otpCode,@otpDate,@otpTime,@otpDuration,@otpStatus,@created,@modified,@deleted,@userid,@remarks,@status)', (error, result, returnvalue) =>
+    await request.execute('OTPSECRETS_STP', (error, result, returnvalue) =>
     {
         if (error || result.rowsAffected[0] !== 1)
         {
@@ -191,6 +190,16 @@ const sendOTP = async (connection, userId, uid, callback) =>
     })
 
 
+}
+
+const doVerifyOTP = async (connection, userData) =>
+{
+    const request = new sql.Request(connection)
+    return new Promise(async (resolve, reject) =>
+    {
+        const mobile = userData.mobile
+        const code = userData.code
+    })
 }
 module.exports =
 {
