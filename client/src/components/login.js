@@ -11,13 +11,16 @@ export default function Login()
     const [error, setError] = useState(null)
     const errordiv = error ? <div className="login-errormsg">{error}</div> : '';
     const history = useHistory();
-    const formik = useFormik({
-        initialValues: {
+    const formik = useFormik
+    ({
+        initialValues:
+         {
 			mobile:"",
 			password: ""
 			
 		},
-		validationSchema: Yup.object({
+        validationSchema: Yup.object
+        ({
 			mobile: Yup.string()
 				.min(10, "To short")
 				.max(10, "To long")
@@ -27,22 +30,36 @@ export default function Login()
 			  .min(6, "Minimum 6 characters")
 			  .required("Required!")
 			
-		  }),
-        onSubmit: (values,onSubmitprops) => {
+          
+        }),
+        onSubmit: (values,onSubmitprops) => 
+        {
             setError(null)
 			let mobTrim=values.mobile.trim()
             let pswdTrim=values.password.trim()
             const trimValues = {mobile:mobTrim,password:pswdTrim}
 			
-			axios.post("/signin",trimValues).then(response=>{
-                 onSubmitprops.resetForm()
-                
-                 history.push('/Home');
-              }).catch((err) => {
+            axios.post("/signin",trimValues).then(response=>
+                {
+                   console.log(response)
+                  
+                    onSubmitprops.resetForm()
+                    history.push
+                    ({
+                        pathname: '/home',
+                        state:{detail:{mobile:response.data,password:response.config.url}}
+                        
+                       
+                    
+                    });
+                })
+                .catch((err) =>
+                {
                   setError("Unable to login!");
-              })
-		  }
-		});
+                  
+                })
+		}
+	});
     return (
         <div className='white'>
             <div className="container">

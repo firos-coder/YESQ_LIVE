@@ -55,7 +55,7 @@ export default function Forgotpassword()
                                         errMsg
                                     </p>
 						        </div>
-                                    <form onSubmit={formik.handleSubmit}  className="forgot_password_form">
+                                    <form onSubmit={formik.handleSubmit}  className="forgot_password_form" autoComplete="off">
                                         <div className="float-right mt-1 forgot_label_msg">
                                             <p>Enter the email address or mobile phone number associated with your YESQ account.</p>
                                         </div>

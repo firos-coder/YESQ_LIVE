@@ -7,18 +7,18 @@ import Forgot from './components/forgot_password'
 import Verification from './components/verification'
 import ResetPassword from './components/resetpwd'
 
-export default function App() {
+export default function App()
+{
   return (
     <div>
       <Router>
-      
       <Route exact path="/">
         <Register/>
       </Route>
-     <Route path="/Login">
+      <Route path="/Login">
       <Login/>
         </Route>
-        <Route path="/Home">
+      <Route path="/Home">
       <Home/>
         </Route>
         <Route path="/Forgot">

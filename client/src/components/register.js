@@ -14,8 +14,10 @@ export default function Register()
 	const phoneRegex = RegExp(
 		/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
 	  );
-	const formik = useFormik({
-        initialValues: {
+	const formik = useFormik
+	({
+		initialValues:
+		 {
 			name: "",
 			mobile:"",
 			password: "",
@@ -49,6 +51,7 @@ export default function Register()
 					const Values = {name:nameTrim,mobile:mobileTrim,password:passwordTrim,confirm_password:confirm_passwordTrim}
 					axios.post("/register", Values).then(res =>
 					{
+					console.log(res)
 					onSubmitprops.resetForm()
 					
 					history.push('/login')
@@ -58,7 +61,7 @@ export default function Register()
 					console.log(errors);
 					})
 			}
-		});
+	});
 	
 	return(
 		
