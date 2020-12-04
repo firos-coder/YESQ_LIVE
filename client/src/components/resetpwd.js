@@ -1,12 +1,14 @@
-import React,{useState} from 'react'
+import React from 'react'
 import '../CSS/login.css'
 import Landing from '../IMAGES/landing.svg'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
+import {useHistory} from 'react-router-dom'
 
 export default function Resetpwd()
  {
+    const history = useHistory()
     const formik = useFormik
     ({
         initialValues: 
@@ -19,17 +21,32 @@ export default function Resetpwd()
         ({
 			password: Yup.string()
 				
-				.required("Required!"),
+                .required("Required!")
+                .min(6, "Password must be at least 6 charecters"),
                 confirm_password: Yup.string()
 		
 			 
-			  .required("Required!")
+              .required("Required!")
+              .oneOf([Yup.ref("password")], "Password's not match")
 			
         }),
-          onSubmit: (values) => 
-          {
-              console.log(values)
-          }
+          onSubmit: (values,onSubmitprops) => 
+          {   
+                axios.post("", values).then(res =>
+                {
+                    
+                    onSubmitprops.resetForm() 
+                    history.push('/login')
+                        
+                })
+                .catch(errors =>
+                {
+                    console.log(errors);
+                }) 
+                    console.log(values)
+               
+             
+           }
     });
     return (
         <div>
