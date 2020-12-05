@@ -67,8 +67,8 @@ a#forgot {
   font-size: 13px;
   font-size: 0.8125rem;
 }
-.font-10 {
-  font-size: 10px !important;
+.font-12 {
+  font-size: 12px !important;
 }
 .form-control {
   height: calc(2.55rem + 2px);
@@ -335,4 +335,32 @@ input::-webkit-inner-spin-button {
 }
 .log-link-clr:hover {
   color: #007bff;
+}
+.signup-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  border: none;
+  font-weight: 600;
+  letter-spacing: normal;
+  margin-bottom: 5px;
+  line-height: 1;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+
+  background: #1a7ff2;
+  color: #fbf6f6 !important;
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+  padding: 10px;
+}
+.signup-btn:hover {
+  background-color: #004dda;
 }

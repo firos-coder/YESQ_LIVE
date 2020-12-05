@@ -1,4 +1,4 @@
-const { doSignup, doSignin, findUser, sendOTP } = require('../user_account/user')
+const { doSignup, doSignin, findUser, sendOTP,doVerifyOTP,doChangePassword } = require('../user_account/user')
 
 module.exports = function (app, connection)
 {
@@ -54,6 +54,7 @@ module.exports = function (app, connection)
                 }
                 const http = require('http');
                 
+                const uid = response.uid
                 const mobile = response.mobile
                 const message = response.message
                 const errMsg = "YESQ verification faild"
@@ -68,7 +69,11 @@ module.exports = function (app, connection)
                     });
                     resp.on('end', () =>
                     {
-                        res.json(mobile)
+                        res.json(
+                            {
+                                mobile,
+                                uid
+                            })
                     });
                     
                 }).on("error", (err) =>
@@ -81,8 +86,26 @@ module.exports = function (app, connection)
 
     app.post('/verification', async (req, res) =>
     {
-        
+        await doVerifyOTP(connection, req.body).then((result) =>
+        {
+            // res.status(200).json(result)
+            res.status(200).json({
+                uid: result.uid
+            })
+        }).catch((err) =>
+        {  
+            res.status(401).json(err)    
+        })
     })
-
+    
+    app.post('/changepassword', async (req, res) =>
+    {
+        await doChangePassword(connection, req.body, (error, result) => {
+            if (error) {
+                 res.status(400).json(error)
+            }
+            res.status(200).json(result)
+         })
+    })
 
 }

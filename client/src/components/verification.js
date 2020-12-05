@@ -5,16 +5,16 @@ import Landing from '../IMAGES/landing.svg'
 import axios from 'axios'
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import {useHistory} from 'react-router-dom'
 
 export default function App()
  {
     const[otp,setOtp] = useState('')
     const[error,setError] = useState('')
     const location = useLocation();
-            useEffect(() => {
-                console.log(location.pathname); // result: '/secondpage'
-               
-                console.log(location.state.detail); // result: 'some_value'
+    const History = useHistory()
+    useEffect(() => {
+                
             }, [location]);
         
         
@@ -33,12 +33,19 @@ export default function App()
                 const inputs =
                  {
                     code:value,
-                    mobile:location.state.detail
+                    uid:location.state.uid
                 }
                 setOtp('')
                  axios.post("/verification",inputs).then(response=>{
                     
-                    
+                     History.push
+                    ({
+                        pathname: '/resetpassword',
+                        state:
+                        {
+                            uid: response.data.uid
+                        }
+                    })
                    
                      
                   }).catch((err) =>
@@ -55,8 +62,16 @@ export default function App()
     }
         const resendOtp=()=>
         {
-            axios.post("/send_otp").then(response=>{
-                    
+            axios.post("/verification").then(response=>{
+               
+                History.push
+                    ({
+                        pathname: '/resetpassword',
+                        state:
+                        {
+                            uid:response.data.uid
+                        }
+                    })
                     
             }).catch((err) =>
             {
@@ -86,8 +101,8 @@ export default function App()
                                             <div className="text-center">
                                                 <h3>Verification</h3>
                                             </div>
-                                            <div className="text-center add_top_10 font-12 verifictn-subhead">Please type the verification code<br/>
-                                                send to {'...'+location.state.detail.slice(-4)}
+                                            <div className="text-center add_top_10 font-12 verifictn-subhead">Please Enter the verification code<br/>
+                                                send to {'...'+location.state.mobile.slice(-4)}
                                                 {error?<div className="otp-errormsg">{error}</div> : ''}
                                             </div>
                                             <form onSubmit={handleSubmit}>
@@ -108,13 +123,13 @@ export default function App()
                                                             
                                                     </div>
                                                 </div>
-                                                <button type="submit" class="btn_1 rounded full-width" >VERIFY</button>
+                                                <button type="submit" class="btn_1 rounded full-width" >CONTINUE</button>
                                                 <div class="text-center add_top_10">
                                                
                                                 </div>
                                                             
                                             </form>
-                                            <button type='submit' className='resend-btn' onClick={resendOtp}> Resend </button>
+                                            <button type='submit' className='resend-btn' onClick={resendOtp}> Resend verification code?</button>
                                         </aside>
                                     </div>
                                 </div>

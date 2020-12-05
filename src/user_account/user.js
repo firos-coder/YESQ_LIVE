@@ -182,7 +182,8 @@ const sendOTP = async (connection, userId, uid, callback) =>
         }
         else
             callback(undefined, response =
-            {
+            {   
+                uid:uid,
                 mobile:userId,
                 message:message
             })
@@ -197,14 +198,60 @@ const doVerifyOTP = async (connection, userData) =>
     const request = new sql.Request(connection)
     return new Promise(async (resolve, reject) =>
     {
-        const mobile = userData.mobile
+        const uid = userData.uid
         const code = userData.code
+        const mode = 'VERIFY'
+
+        request.input('MODE', sql.NVarChar(50), mode)
+        request.input('RECEIVERID', sql.NVarChar(50), uid)
+        request.input('OTPCODE', sql.NVarChar(50), code)
+
+        await request.execute('OTPSECRETS_STP', (error, result, returnValue) =>
+        {
+            if (error || result.rowsAffected[0] !== 1) {
+                reject("Invalid OTP. Please check your code and try again.")
+            }
+
+            resolve(
+            {
+                status: true,
+                uid,
+            })
+        })
+        
     })
 }
+
+const doChangePassword = async (connection, userData, callback) =>
+{
+
+    const request = new sql.Request(connection)
+
+    const mode = 'CHANGE_PASSWORD'
+    const uid = userData.uid
+    const userpassword = userData.confirm_password
+    const password = await bcrypt.hash(userpassword, 8)
+    
+    request.input('MODE', sql.NVarChar(50), mode)
+    request.input('UID', sql.NVarChar(50), uid)
+    request.input('PASWD', sql.NVarChar(sql.MAX), password)
+
+    await request.execute('USERACCOUNT_STP', (error, result, returnValue) =>
+    {
+        if (error || result.rowsAffected[0] !== 1) {
+            callback("Can't Change your password",undefined)
+        }
+        callback(undefined,result)
+    })
+
+}
+
 module.exports =
 {
     doSignup,
     doSignin,
     findUser,
-    sendOTP
+    sendOTP,
+    doVerifyOTP,
+    doChangePassword
 } 

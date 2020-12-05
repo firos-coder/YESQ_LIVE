@@ -32,7 +32,11 @@ export default function Forgotpassword()
                     History.push
                     ({
                         pathname: '/verification',
-                        state: { detail: response.data }
+                        state:
+                        {
+                            mobile: response.data.mobile,
+                            uid:response.data.uid
+                        }
                     })
                 }).catch((err) => {
                  setError(err.response.data);   
@@ -58,7 +62,7 @@ export default function Forgotpassword()
 						        </div>
                                     <form onSubmit={formik.handleSubmit}  className="forgot_password_form" autoComplete="off">
                                         <div className="float-right mt-1 forgot_label_msg">
-                                        <p>Enter the email address or mobile phone number associated with your YESQ account.</p>
+                                        <p className="font-12">Enter the mobile phone number associated with your YESQ account.</p>
                                         
 							        <p className="errorMessage">
                                        {errordiv}
@@ -78,7 +82,7 @@ export default function Forgotpassword()
                                         </div>
                                         <div className="clearfix add_bottom_30">
                                         </div>
-							            <button type="submit" className="forgtpwd-btn">CONTINUE</button>
+							            <button type="submit" className="btn_1 rounded full-width">CONTINUE</button>
 							        </form>
                             </aside>
 				        </div>

@@ -5,9 +5,15 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
 import {useHistory} from 'react-router-dom'
+import { useLocation } from "react-router-dom"
+import { useEffect } from "react"
 
 export default function Resetpwd()
  {
+    const location = useLocation();
+    useEffect(() => {
+                
+            }, [location]);
     const history = useHistory()
     const formik = useFormik
     ({
@@ -32,7 +38,8 @@ export default function Resetpwd()
         }),
           onSubmit: (values,onSubmitprops) => 
           {   
-                axios.post("", values).then(res =>
+              values.uid = location.state.uid
+                axios.post("/changepassword", values).then(res =>
                 {
                     
                     onSubmitprops.resetForm() 
@@ -84,7 +91,7 @@ export default function Resetpwd()
 
                                     </div>
                                     <div className="form-group">
-                                        <label htmlFor="" className="input-label">Confirm Password</label>
+                                            <label htmlFor="" className="input-label">Confirm Password</label>
                                         <input
                                         type="password"
                                         className="form-control signInPassword"
@@ -97,7 +104,7 @@ export default function Resetpwd()
 
                                     </div>
                                    
-                                    <button type="submit" className="reset-btn">SUBMIT</button>
+                                    <button type="submit" className="btn_1 rounded full-width">SUBMIT</button>
                                     
                                 </form>
                             </aside>
