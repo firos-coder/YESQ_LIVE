@@ -78,7 +78,7 @@ export default function Forgotpassword()
                                         </div>
                                         <div className="clearfix add_bottom_30">
                                         </div>
-							            <button type="submit" className="btn_1 rounded full-width">CONTINUE</button>
+							            <button type="submit" className="forgtpwd-btn">CONTINUE</button>
 							        </form>
                             </aside>
 				        </div>

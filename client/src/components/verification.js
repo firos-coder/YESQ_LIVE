@@ -30,7 +30,8 @@ export default function App()
             const valueLength = value.length
             if(valueLength === 6)
             {
-                const inputs = {
+                const inputs =
+                 {
                     code:value,
                     mobile:location.state.detail
                 }
@@ -40,9 +41,10 @@ export default function App()
                     
                    
                      
-                  }).catch((err) => {
+                  }).catch((err) =>
+                   {
                      
-                 })
+                   })
             }
             else
             {
@@ -51,6 +53,17 @@ export default function App()
             }
       
     }
+        const resendOtp=()=>
+        {
+            axios.post("/send_otp").then(response=>{
+                    
+                    
+            }).catch((err) =>
+            {
+               
+             })
+
+        }
 
     
  
@@ -86,7 +99,7 @@ export default function App()
                                                                 value={otp}
                                                                 onChange={handleChange}
                                                                 numInputs={6}
-                                                                separator={<span>  </span>}
+                                                                 separator={<span></span>}
                                                                 isInputNum="true"
                                                                 inputStyle="code-box"
                                                                 containerStyle="otp-box"
@@ -97,10 +110,11 @@ export default function App()
                                                 </div>
                                                 <button type="submit" class="btn_1 rounded full-width" >VERIFY</button>
                                                 <div class="text-center add_top_10">
-                                                        <button> Resend verification code</button>
+                                               
                                                 </div>
                                                             
                                             </form>
+                                            <button type='submit' className='resend-btn' onClick={resendOtp}> Resend </button>
                                         </aside>
                                     </div>
                                 </div>

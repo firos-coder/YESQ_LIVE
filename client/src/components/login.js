@@ -111,7 +111,7 @@ export default function Login()
                                             <p><Link to='/Forgot' className='forgotpswd-link'>Forgot password?</Link></p>
                                         </div>
                                     </div>
-                                    <button type="submit" className="btn_1 rounded full-width">SIGN IN</button>
+                                    <button type="submit" className="signin-btn">SIGN IN</button>
                                     <div className="text-center add_top_10">
                                         <p>You don't have an account?<span className='signup-link'><Link className='signup-link-clr' to='/'>Sign up!</Link></span> </p>
                                     </div>

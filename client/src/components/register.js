@@ -147,7 +147,7 @@ export default function Register()
                          					<p id="forgot" className="font-10"> We will send you a verification code to your phone.</p> 
                             			</div>
 									</div>
-									 <button type="submit" className="btn_1 rounded full-width">CONTINUE</button>
+									 <button type="submit" className="signup-btn">CONTINUE</button>
 									 <div className="text-center add_top_10"><p>Already have an account? <span className='login-link'><Link className='log-link-clr' to ='/Login'>Log In!</Link>  </span></p></div> 
 								</form>
                             </aside>

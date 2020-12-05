@@ -1,5 +1,5 @@
 import React from 'react'
-import '../CSS/login.css'
+import '../CSS/resetpwd.css'
 import Landing from '../IMAGES/landing.svg'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
@@ -97,7 +97,7 @@ export default function Resetpwd()
 
                                     </div>
                                    
-                                    <button type="submit" className="btn_1 rounded full-width marg-top-10">SUBMIT</button>
+                                    <button type="submit" className="reset-btn">SUBMIT</button>
                                     
                                 </form>
                             </aside>
