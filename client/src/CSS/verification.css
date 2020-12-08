@@ -240,4 +240,13 @@ a.btn_1.rounded,
   padding: 5px;
   margin-left: 5px;
   border: none;
+  outline: none !important;
+   -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.resend-btn:hover {
+  color: #000;
 }
