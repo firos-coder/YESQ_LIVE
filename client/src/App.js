@@ -6,6 +6,8 @@ import Home from './components/home'
 import Forgot from './components/forgot_password'
 import Verification from './components/verification'
 import ResetPassword from './components/resetpwd'
+import Userexist from './components/userexist'
+import  Notfound from './components/404'
 
 export default function App()
 {
@@ -30,7 +32,13 @@ export default function App()
         <Route path="/resetpassword">
           <ResetPassword />
         </Route>
-      
+        <Route path="/Userexist">
+        <Userexist/>
+        </Route>
+        <Route path="/Notfound">
+          < Notfound/>
+        </Route>
+       
 
       </Router>
       
