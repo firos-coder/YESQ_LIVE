@@ -15,12 +15,19 @@ const findUserExist = async (connection, userData) =>
         request.input('MOBILE', sql.NVarChar(50), mobile)
         await request.execute('USERACCOUNT_STP', (error, result, returnValue) =>
         {
-            if (error || result.rowsAffected[0] > 0)
+            if (error)
             {
-                reject("You indicated you are a new customer, but an account already exists with the mobile number +919562060575")
-            } else
-                resolve(response.status = true)
-            console.log(result);
+                reject("Execution error!")
+            }
+            else if (result.rowsAffected[0] > 0)
+            {
+                reject("You indicated you are a new customer, but an account already exists with the mobile number "+mobile)
+            }
+
+                resolve(response = {
+                    status: true,
+                    mobile: mobile
+                })
         }) 
     })
     
@@ -107,7 +114,7 @@ const doSignin = async (connection, userData) =>
                 reject(response =
                 {
                     status: false,
-                    errMsg: "Unable to sign in!",
+                    errMsg: "Unable to sign in",
                 })
             }
             else
@@ -200,7 +207,7 @@ const sendOTP = async (connection, userId, uid, callback) =>
     {
         if (error || result.rowsAffected[0] !== 1)
         {
-            callback("Can't create verification key"+error,undefined)
+            callback("Can't create verification key",undefined)
         }
         else
             callback(undefined, response =
@@ -223,10 +230,12 @@ const doVerifyOTP = async (connection, userData) =>
         const uid = userData.uid
         const code = userData.code
         const mode = 'VERIFY'
+        const sendTo = userData.sendTo
 
         request.input('MODE', sql.NVarChar(50), mode)
         request.input('RECEIVERID', sql.NVarChar(50), uid)
         request.input('OTPCODE', sql.NVarChar(50), code)
+        request.input('SENDTO',sql.NVarChar(50), sendTo)
 
         await request.execute('OTPSECRETS_STP', (error, result, returnValue) =>
         {

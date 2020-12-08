@@ -8,17 +8,16 @@ import { useEffect } from "react";
 import {useHistory} from 'react-router-dom'
 
 export default function App()
-{
-    const [error, setError] = useState(null)
-    const errordiv = error ? <div className="login-errormsg">{error}</div> : '';
+ {
     const[otp,setOtp] = useState('')
+    const[error,setError] = useState('')
     const location = useLocation();
     const History = useHistory()
     const resendInput =
     {
         mobile:location.state.mobile
     }
-    const mobileToString = location.state.mobile.toString()
+    const mobileToString =location.state.mobile.toString()
     useEffect(() => {
                 
             }, [location]);
@@ -40,14 +39,17 @@ export default function App()
                  {
                     code:value,
                     uid: location.state.uid,
-                    sendTo : location.state.mobile
+                    sendTo: location.state.mobile,
+                    name: location.state.name,
+                    mobile: location.state.mobile,
+                    confirm_password:location.state.password
                 }
                 setOtp('')
-                 axios.post("/verification",inputs).then(response=>{
+                 axios.post("/register",inputs).then(response=>{
                     
                      History.push
                     ({
-                        pathname: '/resetpassword',
+                        pathname: '/home',
                         state:
                         {
                             uid: response.data.uid
@@ -57,7 +59,8 @@ export default function App()
                      
                   }).catch((err) =>
                    {
-                     setError(err.response.data);
+                     
+                 setError(err.response.data);   
                    })
             }
             else
@@ -69,11 +72,11 @@ export default function App()
     }
         const resendOtp=()=>
         {
-            axios.post("/send_otp", resendInput).then(response =>
+            axios.post("/verifyregister", resendInput).then(response =>
                 {
                     History.push
                     ({
-                        pathname: '/verification',
+                        pathname: '/regverification',
                         state:
                         {
                             mobile: response.data.mobile,
@@ -106,9 +109,9 @@ export default function App()
                                         <aside>
                                             <div className="text-center">
                                                 <h3>Verification</h3>
-                                        </div>
+                                            </div>
                                             <div className="text-center add_top_10 font-12 verifictn-subhead">Please Enter the verification code<br/>
-                                                send to {'...'+mobileToString.slice(-4)}
+                                                send to {'...' + mobileToString.slice(-4)}
                                                 {error?<div className="otp-errormsg">{error}</div> : ''}
                                             </div>
                                             <form onSubmit={handleSubmit}>

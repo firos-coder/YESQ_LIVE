@@ -55,7 +55,7 @@ export default function Login()
                 })
                 .catch((err) =>
                 {
-                  setError("Unable to login!");
+                  setError(err.response.data);
                   
                 })
 		}

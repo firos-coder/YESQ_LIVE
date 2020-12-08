@@ -1,26 +1,70 @@
 const { response } = require('express')
 const { doSignup, doSignin, findUser, sendOTP,doVerifyOTP,doChangePassword, findUserExist} = require('../user_account/user')
+const axios = require('axios')
 
 module.exports = function (app, connection)
 {
 
-    app.post('/register', async (req, res) =>
+    app.post('/verifyregister', async (req, res) =>
     {
+        const userName = req.body.name
+        const userPassword = req.body.password
         await findUserExist(connection, req.body).then(async (response) =>
         {
-            await doSignup(connection, req.body, (error, result) =>
+            const user_id = response.mobile
+            const uid = 'NA'
+            await sendOTP(connection, user_id, uid, async (error, response) =>
             {
+                if (error)
+                {
+                    return res.status(400).json(error)
+                }
+                
+                const uid = response.uid
+                const mobile = response.mobile
+                const message = response.message
+
+                // OTP SMS API
+
+                try
+                {
+                     await axios.get('http://sapteleservices.com/SMS_API/sendsms.php?username=rootme&password=pass@2020&mobile=' + mobile + '&sendername=ROTMPK&message=' + message + '&routetype=1')
+                } catch (error)
+                {
+                    console.error(error)
+                }
+
+                res.status(200).json({
+                    mobile,
+                    uid,
+                    name:userName,
+                    password:userPassword
+                            
+                })
+                console.log("Done");
+            })
+        }).catch((err) =>
+            {
+                res.status(400).json(err)
+                console.log(err);
+            })
+    })
+
+    app.post('/register', async (req, res) =>
+    {
+        await doVerifyOTP(connection, req.body).then(async (response) => {
+            
+            await doSignup(connection, req.body, (error, result) => {
                 if (error)
                 {
                     return res.status(400).json(error)
                 }
                 res.status(201).json(result)
             })
-        }).catch((err) =>
-            {
-                res.status(400).json(err)
-            })
-        
+
+        }).catch((err) => {
+            res.status(400).json(err)
+        })
     })
 
     app.post('/signin', (req, res) =>
@@ -52,34 +96,23 @@ module.exports = function (app, connection)
                 {
                     return res.status(400).json(error)
                 }
-                const http = require('http');
                 
                 const uid = response.uid
                 const mobile = response.mobile
                 const message = response.message
                 const errMsg = "YESQ verification faild"
 
-                await http.get('http://sapteleservices.com/SMS_API/sendsms.php?username=rootme&password=pass@2020&mobile='+mobile+'&sendername=ROTMPK&message='+message+'&routetype=1', (resp) =>
+                try
                 {
-                    let data = ''
-
-                    resp.on('data', (chunk) =>
-                    {
-                        data += chunk;
-                    });
-                    resp.on('end', () =>
-                    {
-                        res.json(
-                            {
-                                mobile,
-                                uid
-                            })
-                    });
+                    await axios.get('http://sapteleservices.com/SMS_API/sendsms.php?username=rootme&password=pass@2020&mobile=' + mobile + '&sendername=ROTMPK&message=' + message + '&routetype=1')
                     
-                }).on("error", (err) =>
-                {
-                    res.json(errMsg);
-                });
+                } catch (error) {
+                    res.status(400).json(errMsg)                }
+                res.status(200).json({
+                    uid,
+                    mobile
+                })
+                
             })
         })
     })

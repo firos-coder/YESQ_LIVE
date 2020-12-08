@@ -12,7 +12,7 @@ export default function Register()
 {
 	const [error, setError] = useState(null)
     const errordiv = error ? <div className="login-errormsg">{error}</div> : '';
-	const history = useHistory()
+	const History = useHistory()
 	const phoneRegex = RegExp(
 		/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
 	  );
@@ -50,18 +50,35 @@ export default function Register()
 					let mobileTrim = values.mobile
 					let passwordTrim = values.password.trim()
 					let confirm_passwordTrim = values.confirm_password.trim()
-					const Values = {name:nameTrim,mobile:mobileTrim,password:passwordTrim,confirm_password:confirm_passwordTrim}
-					axios.post("/register", Values).then(res =>
-					{
-					console.log(res)
-					onSubmitprops.resetForm()
-					
-					history.push('/home')
+					const inputs = { name: nameTrim, mobile: mobileTrim, password: passwordTrim, confirm_password: confirm_passwordTrim }
+				
+					 axios.post("/verifyregister",inputs).then(response=>
+                {
+				  
 						
-					}).catch(error =>
-					{
-					setError(error.response.data)
-					})
+					 onSubmitprops.resetForm()
+                    History.push
+                    ({
+						pathname: '/regverification',
+						state: {
+							uid: response.data.uid,
+							name: response.data.name,
+							mobile: response.data.mobile,
+							password:response.data.password
+							
+						}
+                        
+                       
+                    
+					});
+						 
+						 
+                })
+                .catch((err) =>
+                {
+					setError(err.response.data);
+                  
+                })
 			}
 	});
 	

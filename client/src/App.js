@@ -6,6 +6,7 @@ import Home from './components/home'
 import Forgot from './components/forgot_password'
 import Verification from './components/verification'
 import ResetPassword from './components/resetpwd'
+import RegVerification from './components/reg_verification'
 
 export default function App()
 {
@@ -29,6 +30,9 @@ export default function App()
         </Route>
         <Route path="/resetpassword">
           <ResetPassword />
+        </Route>
+        <Route path="/regverification">
+          <RegVerification />
         </Route>
       
 
