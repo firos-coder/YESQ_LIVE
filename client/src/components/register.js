@@ -1,4 +1,4 @@
-import React  from 'react'
+import React,{useState}  from 'react'
 import '../CSS/register.css'
 import Landing from '../IMAGES/landing.svg'
 import { useFormik } from 'formik'
@@ -10,6 +10,8 @@ import {useHistory} from 'react-router-dom'
 
 export default function Register() 
 {
+	const [error, setError] = useState(null)
+    const errordiv = error ? <div className="login-errormsg">{error}</div> : '';
 	const history = useHistory()
 	const phoneRegex = RegExp(
 		/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
@@ -54,11 +56,11 @@ export default function Register()
 					console.log(res)
 					onSubmitprops.resetForm()
 					
-					history.push('/login')
+					history.push('/home')
 						
-					}).catch(errors =>
+					}).catch(error =>
 					{
-					console.log(errors);
+					setError(error.response.data)
 					})
 			}
 	});
@@ -79,7 +81,8 @@ export default function Register()
 			            <div id="login">
 				            <aside>
 				                <div className="text-center"> 
-					                <h3>Create Account</h3>
+									<h3>Create Account</h3>
+									{errordiv}
 				                </div>
                                  <form onSubmit={formik.handleSubmit} autoComplete="off">
 				

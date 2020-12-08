@@ -1,26 +1,26 @@
-const { doSignup, doSignin, findUser, sendOTP,doVerifyOTP,doChangePassword } = require('../user_account/user')
+const { response } = require('express')
+const { doSignup, doSignin, findUser, sendOTP,doVerifyOTP,doChangePassword, findUserExist} = require('../user_account/user')
 
 module.exports = function (app, connection)
 {
 
     app.post('/register', async (req, res) =>
     {
-
-        doSignup(connection, req.body).then((response) =>
+        await findUserExist(connection, req.body).then(async (response) =>
         {
-
-                if (response.status === true)
+            await doSignup(connection, req.body, (error, result) =>
+            {
+                if (error)
                 {
-
-                    const mobile = response.mobile
-                    res.status(200).json(mobile)
-
+                    return res.status(400).json(error)
                 }
-
+                res.status(201).json(result)
+            })
         }).catch((err) =>
             {
                 res.status(400).json(err)
             })
+        
     })
 
     app.post('/signin', (req, res) =>

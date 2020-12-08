@@ -1,10 +1,33 @@
 const sql = require('mssql')
 const bcrypt = require('bcrypt')
+const { response } = require('express')
 
-const doSignup = async (connection, userData) =>
+const findUserExist = async (connection, userData) =>
 {
     return new Promise(async (resolve, reject) =>
     {
+       const mode = 'FIND_USER'
+        const mobile = userData.mobile
+        const request = new sql.Request(connection)
+        let response = {}
+
+        request.input('MODE', sql.NVarChar(50), mode)
+        request.input('MOBILE', sql.NVarChar(50), mobile)
+        await request.execute('USERACCOUNT_STP', (error, result, returnValue) =>
+        {
+            if (error || result.rowsAffected[0] > 0)
+            {
+                reject("You indicated you are a new customer, but an account already exists with the mobile number +919562060575")
+            } else
+                resolve(response.status = true)
+            console.log(result);
+        }) 
+    })
+    
+}
+
+const doSignup = async (connection, userData, callback) =>
+{
         let response = {}
         const mode = 'INSERT'
         const request = new sql.Request(connection)
@@ -50,21 +73,20 @@ const doSignup = async (connection, userData) =>
         {
             if (error != undefined)
             {
-                reject(response =
+                callback(response =
                 {
                     status: false,
                     errMsg: "Unable to create your account",
                     error:error
-                })
+                },undefined)
             }
             else
-                resolve(response =
+                callback(undefined,response =
                 {
                     status: true,
                     mobile: mobile
                 })
         })
-    })
 
 
 }
@@ -253,5 +275,6 @@ module.exports =
     findUser,
     sendOTP,
     doVerifyOTP,
-    doChangePassword
+    doChangePassword,
+    findUserExist
 } 
