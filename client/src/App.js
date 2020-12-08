@@ -7,6 +7,8 @@ import Forgot from './components/forgot_password'
 import Verification from './components/verification'
 import ResetPassword from './components/resetpwd'
 import RegVerification from './components/reg_verification'
+import Userexist from './components/userexist'
+import  Notfound from './components/404'
 
 export default function App()
 {
@@ -35,6 +37,13 @@ export default function App()
           <RegVerification />
         </Route>
       
+        <Route path="/Userexist">
+        <Userexist/>
+        </Route>
+        <Route path="/Notfound">
+          < Notfound/>
+        </Route>
+       
 
       </Router>
       
