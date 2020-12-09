@@ -89,6 +89,7 @@ export default function Login() {
                                             id="mobile"
                                             value={formik.values.mobile}
                                             onChange={formik.handleChange}
+											onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
                                             onBlur={formik.handleBlur} /> {formik.touched.mobile && formik.errors.mobile && (<div className="errorMessage">{formik.errors.mobile}</div>)}
 
                                     </div>

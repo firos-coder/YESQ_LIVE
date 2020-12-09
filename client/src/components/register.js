@@ -57,7 +57,7 @@ export default function Register() {
 					onSubmitprops.resetForm()
 					History.push
 						({
-							pathname: '/regverification',
+							pathname: '/registerverification',
 							state: {
 								uid: response.data.uid,
 								name: response.data.name,
@@ -118,7 +118,7 @@ export default function Register() {
 									</div>
 									<div className="form-group">
 										<label htmlFor="" className="input-label">Mobile Number</label>
-										<input type='number'
+										<input type='text'
 
 											name="mobile"
 											id="mobile"
@@ -126,7 +126,6 @@ export default function Register() {
 											value={formik.values.mobile}
 											onChange={formik.handleChange}
 											onBlur={formik.handleBlur}
-											onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
 
 											// {...formik.getFieldProps('mobile')}
 											className="form-control" />
@@ -168,7 +167,7 @@ export default function Register() {
 										</div>
 									</div>
 									<button type="submit" className="btn_1 rounded full-width">CONTINUE</button>
-									<div className="text-center add_top_10"><p>Already have an account? <span className='login-link'><Link className='log-link-clr' to='/Login'>Log In!</Link>  </span></p></div>
+									<div className="text-center add_top_10"><p>Already have an account? <span className='login-link'><Link className='log-link-clr' to='/login'>Log In!</Link>  </span></p></div>
 								</form>
 							</aside>
 						</div>

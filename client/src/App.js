@@ -14,29 +14,35 @@ export default function App() {
   return (
     <div>
       <Router>
+        
         <Route exact path="/">
           <Register />
         </Route>
-        <Route path="/Login">
+
+        <Route path="/login">
           <Login />
         </Route>
-        <Route path="/Home">
+        <Route path="/home">
           <Home />
         </Route>
-        <Route path="/Forgot">
+
+        <Route path="/forgot">
           <Forgot />
         </Route>
+
         <Route path="/verification">
           <Verification />
         </Route>
+
         <Route path="/resetpassword">
           <ResetPassword />
         </Route>
-        <Route path="/regverification">
+
+        <Route path="/registerverification">
           <RegVerification />
         </Route>
 
-        <Route path="/Userexist">
+        <Route path="/userexist">
           <Userexist />
         </Route>
 

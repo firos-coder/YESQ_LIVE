@@ -49,7 +49,7 @@ export default function App()
                     
                      History.push
                     ({
-                        pathname: '/home',
+                        pathname: '/login',
                         state:
                         {
                             uid: response.data.uid
