@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Route } from "react-router-dom"
+import { BrowserRouter, Switch, Route } from "react-router-dom"
 import Login from './components/login'
 import Register from './components/register'
 import Home from './components/home'
@@ -12,8 +12,8 @@ import Notfound from './components/404'
 
 export default function App() {
   return (
-    <div>
-      <Router>
+    <BrowserRouter>
+      <Switch>
         
         <Route exact path="/">
           <Register />
@@ -51,10 +51,9 @@ export default function App() {
         </Route>
 
 
-      </Router>
+      </Switch>
+    </BrowserRouter>
 
-
-    </div>
   )
 }
 
