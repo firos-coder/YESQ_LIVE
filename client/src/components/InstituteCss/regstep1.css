@@ -1,0 +1,31 @@
+.form-align{
+    
+    padding-top: 100px;
+}
+.vertheight{
+    height: 100vh;
+}
+.form-pad{
+    width: 100%;
+    box-shadow: 0px 0px 30px 0px rgb(217, 230,250);
+    padding: 50px 60px 100px 40px;
+    border-radius: 5px;
+}
+label {
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  .submit{
+      margin: 15px;
+  }
+
+    .errorMessage {
+        color: red;
+        text-shadow: 0px 0px 2px rgba(150, 155, 150, 1);
+        text-align: left;
+        font-size: 13px;
+      }
+      .pad-20{
+          margin-top: 50px;
+      }
+  

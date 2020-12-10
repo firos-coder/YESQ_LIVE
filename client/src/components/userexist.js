@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import '../CSS/userexist.css'
-import Landing from '../IMAGES/landing.svg'
+import '../Css/userexist.css'
+import Landing from '../Images/landing.svg'
 
 
 export default function userexist() {

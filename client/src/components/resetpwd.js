@@ -1,6 +1,6 @@
 import React from 'react'
-import '../CSS/resetpwd.css'
-import Landing from '../IMAGES/landing.svg'
+import '../Css/resetpwd.css'
+import Landing from '../Images/landing.svg'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'

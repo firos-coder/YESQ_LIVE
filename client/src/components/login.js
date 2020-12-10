@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import '../CSS/login.css'
-import Landing from '../IMAGES/landing.svg'
+import '../Css/login.css'
+import Landing from '../Images/landing.svg'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
@@ -25,8 +25,7 @@ export default function Login() {
                 ({
                     mobile: Yup.string()
                         .matches(phoneRegex, "Incorrect mobile number")
-                        // .min(10, "To short")
-                        // .max(10, "To long")
+                        
                         .required("Enter your mobile number"),
                     password: Yup.string()
 

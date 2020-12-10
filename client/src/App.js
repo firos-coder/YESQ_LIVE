@@ -1,14 +1,17 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from "react-router-dom"
-import Login from './components/login'
-import Register from './components/register'
-import Home from './components/home'
-import Forgot from './components/forgot_password'
-import Verification from './components/verification'
-import ResetPassword from './components/resetpwd'
-import RegVerification from './components/reg_verification'
-import Userexist from './components/userexist'
-import Notfound from './components/404'
+import Login from './Components/login'
+import Register from './Components/register'
+import Home from './Components/home'
+import Forgot from './Components/forgot_password'
+import Verification from './Components/verification'
+import ResetPassword from './Components/resetpwd'
+import RegVerification from './Components/reg_verification'
+import Userexist from './Components/userexist'
+import Notfound from './Components/404'
+import Regstep1 from './Components/Institute/regstep1'
+import Regstep2 from './Components/Institute/regstep2'
+import Regstep3 from './Components/Institute/regstep3'
 
 export default function App() {
   return (
@@ -46,9 +49,23 @@ export default function App() {
           <Userexist />
         </Route>
 
+        <Route path="/instituteregistration1">
+          < Regstep1 />
+        </Route>
+
+        <Route path="/instituteregistration2">
+          < Regstep2 />
+        </Route>
+
+        <Route path="/instituteregistration3">
+          < Regstep3 />
+        </Route>
+
         <Route path="*">
           < Notfound />
         </Route>
+
+        
 
 
       </Switch>
