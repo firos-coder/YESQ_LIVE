@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import OtpInput from 'react-otp-input';
 import '../InstituteCss/instverification.css'
-import Landing from '../../Images/landing.svg'
 import axios from 'axios'
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
@@ -50,7 +49,7 @@ export default function Instverification() {
             })
         }
         else {
-            console.log("enter valid otp")
+            // console.log("enter valid otp")
             
         }
 
@@ -72,57 +71,48 @@ export default function Instverification() {
     }
 
     return (
-        <div className='white'>
             <div className="container">
-                <div className="row d-flex align-items-center vh-100">
-                    <div className="col-md-6 card-new">
-                        <div className="card1 pb-5">
-                            <div className="row px-3  mt-4 mb-5 border-line">
-                                <img src={Landing} alt='logo' />
+                <div className="pad-100">
+                    <div className="row box-pad align-center ">
+                        <div className="col-md-6 form-pad">
+                        <div className="text-center main-head">
+                                     <h3>Verification</h3>
                             </div>
-                        </div>
-                    </div>
-                    <div className="col-md-5 m-auto">
-                        <div id="login" className="mar-btom-0">
-                            <aside>
-                                <div className="text-center">
-                                    <h3>Verification</h3>
-                                </div>
-                                <div className="text-center add_top_10 font-12 verifictn-subhead">Please Enter the verification code<br />
-                                                send to 
+                                 <div className="text-center add_top_10 font-12 verifictn-subhead">Please Enter the verification code<br />
+                                                 send to 
                                     
                                 </div>
-                                <form onSubmit={handleSubmit}>
-                                    <div className="form-group">
-                                        <div className="code_group">
-                                            <div className="row code-box-marg"></div>
-                                            <OtpInput
+                                 <form onSubmit={handleSubmit}>
+                                     <div className="form-group">
+                                         <div className="code_group">
+                                           <div className="row code-box-marg"></div>
+                                         <OtpInput
 
-                                                value={otp}
-                                                onChange={handleChange}
+                                         value={otp}
+                                               onChange={handleChange}
                                                 numInputs={6}
-                                                separator={<span></span>}
-                                                isInputNum="true"
-                                                inputStyle="code-box"
-                                                containerStyle="otp-box"
-                                            />
+                                                 separator={<span></span>}
+                                                 isInputNum="true"
+                                                 inputStyle="code-box"
+                                                 containerStyle="otp-box"
+                                             />
 
 
-                                        </div>
-                                    </div>
-                                    <button type="submit" class="btn_1 rounded full-width" >CONTINUE</button>
-                                    <div class="text-center add_top_10">
+                                         </div>
+                                     </div>
+                                     <button type="submit" class="btn_1 rounded full-width" >CONTINUE</button>
+                                     <div class="text-center add_top_10">
 
-                                    </div>
+                                     </div>
 
-                                </form>
-                                <button type='submit' className='resend-btn' onClick={resendOtp}> Resend verification code?</button>
-                            </aside>
+                            </form>
+                            <button type='submit' className='resend-btn' onClick={resendOtp}> Resend verification code?</button>
+
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        
     );
 
 }
