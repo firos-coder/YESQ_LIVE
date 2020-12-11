@@ -6,9 +6,7 @@ import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 export default function Regstep3() {
     const History = useHistory()
-    const phoneRegex = RegExp(
-        /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
-    );
+   
     const formik = useFormik
         ({
             initialValues:
@@ -131,7 +129,7 @@ export default function Regstep3() {
                                     {...formik.getFieldProps('twitter')}
                                 />
                             </div>
-                            <button type="submit" className="btn_1 rounded full-width pad-20">Submit</button>
+                            <button type="submit" className="btn_1 rounded full-width  submit-btn pad-60">Submit</button>
                         </div>
                         
                     </div>

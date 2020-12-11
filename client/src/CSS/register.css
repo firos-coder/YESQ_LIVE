@@ -31,7 +31,7 @@
   -webkit-box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.5);
   box-shadow: 0px 0px 30px 0px rgb(217, 230, 255);
-  padding: 50px 60px 100px 60px;
+  padding: 50px 45px 100px 45px;
   /*! margin-left:-215px; */
   /*! position:absolute; */
   /*! left:50%; */
@@ -313,10 +313,6 @@ body {
 .input-label {
   font-weight: 600;
 }
-::-webkit-input-placeholder {
-  /* Edge */
-  font-size: 12px !important;
-}
 .forgot_heading {
   margin-bottom: 25px !important;
 }
@@ -361,6 +357,10 @@ input::-webkit-inner-spin-button {
   cursor: pointer;
   padding: 10px;
 }
-.signup-btn:hover {
-  background-color: #004dda;
+::-webkit-input-placeholder,
+::-moz-placeholder,
+:-ms-input-placeholder,
+:-moz-placeholder {
+  color: red !important;
+  font-size: 13px !important;
 }

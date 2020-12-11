@@ -12,6 +12,7 @@ import Notfound from './Components/404'
 import Regstep1 from './Components/Institute/regstep1'
 import Regstep2 from './Components/Institute/regstep2'
 import Regstep3 from './Components/Institute/regstep3'
+import Instverification from './Components/Institute/instverification'
 
 export default function App() {
   return (
@@ -59,6 +60,10 @@ export default function App() {
 
         <Route path="/instituteregistration3">
           < Regstep3 />
+        </Route>
+
+        <Route path="/instituteverification">
+          < Instverification />
         </Route>
 
         <Route path="*">

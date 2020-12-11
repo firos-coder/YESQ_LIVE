@@ -6,9 +6,7 @@ import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 export default function Regstep2() {
     const History = useHistory()
-    const phoneRegex = RegExp(
-        /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
-    );
+   
     const formik = useFormik
         ({
             initialValues:

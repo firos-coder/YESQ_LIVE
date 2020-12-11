@@ -109,6 +109,7 @@ export default function Register() {
 											type="name"
 											className="form-control"
 											name="name"
+											placeholder={formik.errors.name}
 											value={formik.values.name}
 											onChange={formik.handleChange}
 											onBlur={formik.handleBlur}

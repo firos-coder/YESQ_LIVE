@@ -85,7 +85,7 @@ export default function Regstep1() {
                                     className="form-control signInMobile"
                                     name="institute_name"
                                     id="institute_name"
-                                    {...formik.getFieldProps('institute_name')}
+                                   {...formik.getFieldProps('institute_name')}
                                 />
                                 {formik.touched.institute_name && formik.errors.institute_name && (<div className="errorMessage">{formik.errors.institute_name}</div>)}
 

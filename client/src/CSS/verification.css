@@ -250,3 +250,10 @@ a.btn_1.rounded,
 .resend-btn:hover {
   color: #000;
 }
+::-webkit-input-placeholder,
+::-moz-placeholder,
+:-ms-input-placeholder,
+:-moz-placeholder { /* Firefox 18- */
+  color: red !important;
+  font-size: 19px !important;
+}

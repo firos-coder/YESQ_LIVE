@@ -1,0 +1,260 @@
+body {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    font-family: "Montserrat", sans-serif;
+    color: #555;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #333;
+  }
+  p {
+    margin-bottom: 30px;
+  }
+  strong {
+    font-weight: 600;
+  }
+  label {
+    font-weight: 500;
+    margin-bottom: 3px;
+  }
+  hr {
+    margin: 15px 0 15px 0;
+    border-color: #e2edff;
+  }
+  ul,
+  ol {
+    list-style: none;
+    margin: 0 0 25px 0;
+    padding: 0;
+  }
+  .white {
+    background: #fff;
+  }
+  .vh-100 {
+    height: 100vh;
+  }
+  #login aside h3 {
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    color: #004dda;
+  }
+  @media only screen and (max-width: 600px) {
+    .card-new {
+      display: none;
+    }
+  
+    #login aside,
+    #register aside {
+      -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0) !important;
+      -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0) !important;
+      box-shadow: 0px 0px 0px 0px rgb(0, 0, 0) !important;
+    }
+  }
+  #login figure,
+  #register figure {
+    text-align: center;
+    border-bottom: 1px solid #ededed;
+    margin: -45px -60px 25px -60px;
+    padding: 20px 60px 25px 60px;
+  }
+  @media (max-width: 767px) {
+    #login figure,
+    #register figure {
+      margin: -30px -30px 20px -30px;
+      padding: 15px 60px 20px 60px;
+    }
+  }
+  #login aside,
+  #register aside {
+    width: 100%;
+    -webkit-box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 30px 0px rgb(217, 230, 255);
+    padding: 50px 60px 100px 60px;
+    /*! margin-left:-215px; */
+    /*! position:absolute; */
+    /*! left:50%; */
+    /*! top:0; */
+    /*! overflow-y:auto; */
+    background-color: #fff;
+    /*! min-height:100vh */
+    border-radius: 5px;
+  }
+  @media (max-width: 767px) {
+    #login aside,
+    #register aside {
+      width: 100%;
+      padding: 30px;
+      left: 0;
+      margin: 0;
+    }
+  }
+  #login aside form,
+  #register aside form {
+    /*! margin-bottom:60px; */
+    display: block;
+  }
+  #login aside form .form-group input,
+  #register aside form .form-group input {
+    padding-left: 10px;
+    font-weight: 500;
+  }
+  #login aside form .form-group i,
+  #register aside form .form-group i {
+    font-size: 21px;
+    font-size: 1.3125rem;
+    position: absolute;
+    left: 12px;
+    top: 34px;
+    color: #ccc;
+    width: 25px;
+    height: 25px;
+    display: block;
+    font-weight: 400 !important;
+  }
+  #login aside .copy,
+  #register aside .copy {
+    text-align: center;
+    position: absolute;
+    height: 30px;
+    left: 0;
+    bottom: 30px;
+    width: 100%;
+    color: #999;
+    font-weight: 500;
+  }
+  .input-label {
+    font-weight: 600;
+  }
+  .form-control {
+    height: calc(2.55rem + 2px);
+    font-size: 14px;
+    font-size: 0.875rem;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    border-radius: 3px;
+    border: 2px solid #f0f0f0;
+    background: #f4f4f4;
+  }
+  .add_bottom_30 {
+    margin-bottom: 30px;
+  }
+  a.btn_1,
+  .btn_1 {
+    border: none;
+    color: #fff;
+    background: #1a7ff2;
+    outline: none;
+    cursor: pointer;
+    /*! display:inline-block; */
+    text-decoration: none;
+    padding: 10px 15px;
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    border-radius: 3px;
+    color: #fff !important;
+    outline: none !important;
+  }
+  a.btn_1:hover,
+  .btn_1:hover {
+    background-color: #004dda;
+    color: #fbf6f6 !important;
+  }
+  a.btn_1.full-width,
+  .btn_1.full-width {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+  .add_top_10 {
+    margin-top: 10px;
+  }
+  a.btn_1.rounded,
+  .btn_1.rounded {
+    -webkit-border-radius: 25px !important;
+    -moz-border-radius: 25px !important;
+    -ms-border-radius: 25px !important;
+    border-radius: 5px !important;
+  }
+  .mar-btom-0 {
+    margin-bottom: 0px;
+  }
+  .code-box {
+    width: 100% !important;
+    height: 50px !important;
+    border-bottom: solid #d7d7d7 !important;
+    border: none;
+    font-size: 20px;
+    padding: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    outline: none;
+  }
+  .code-box:focus {
+    border-bottom: solid #1a7ff2 !important;
+  }
+  .code-box-marg {
+    margin-left: 0px;
+    margin-right: 0px;
+  
+    text-align: center;
+  }
+  .otp-box {
+    margin-left: 0px;
+  }
+  .verifictn-subhead {
+    margin-bottom: 30px;
+  }
+  .otp-errormsg {
+    color: red;
+    text-align: center;
+    text-shadow: 0px 0px 2px rgba(150, 155, 150, 1);
+    font-size: 16px;
+    margin-top: 20px;
+  }
+  .resend-btn {
+    text-align: center;
+    width: 100%;
+    background: transparent;
+    outline: none;
+    color: #1a7ff2;
+    font-size: 14px;
+    border-radius: 5px;
+    padding: 5px;
+    margin-left: 5px;
+    border: none;
+    outline: none !important;
+     -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+  }
+  .resend-btn:hover {
+    color: #000;
+  }
+  ::-webkit-input-placeholder,
+  ::-moz-placeholder,
+  :-ms-input-placeholder,
+  :-moz-placeholder { /* Firefox 18- */
+    color: red !important;
+    font-size: 19px !important;
+  }
+  
