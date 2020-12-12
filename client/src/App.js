@@ -50,19 +50,19 @@ export default function App() {
           <Userexist />
         </Route>
 
-        <Route path="/instituteregistration1">
+        <Route path="/institute/registration1">
           < Regstep1 />
         </Route>
 
-        <Route path="/instituteregistration2">
+        <Route path="/institute/registration2">
           < Regstep2 />
         </Route>
 
-        <Route path="/instituteregistration3">
+        <Route path="/institute/registration3">
           < Regstep3 />
         </Route>
 
-        <Route path="/instituteverification">
+        <Route path="/institute/verification">
           < Instverification />
         </Route>
 

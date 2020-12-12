@@ -121,5 +121,4 @@ module.exports = function (app, connection) {
             res.status(200).json(result)
         })
     })
-
 }

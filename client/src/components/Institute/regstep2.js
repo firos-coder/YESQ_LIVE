@@ -2,11 +2,16 @@ import React from 'react'
 import '../InstituteCss/regstep1.css'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
-import axios from 'axios'
 import { useHistory } from 'react-router-dom'
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
+
 export default function Regstep2() {
     const History = useHistory()
-   
+    const location = useLocation()
+   useEffect(() => {
+                
+            }, [location]);
     const formik = useFormik
         ({
             initialValues:
@@ -64,19 +69,16 @@ export default function Regstep2() {
                                     area: areaTrim,city:cityTrim,pincode:pincode,
                                     district:districtTrim, state:stateTrim,country:countryTrim}
                                     console.log(trimValues)
-                 axios.post("", trimValues).then(response => {
                      
                     onSubmitprops.resetForm()
-                    //  history.push
-                    //      ({
-                    //         pathname: '/',
-                    //          state: { }
-                    //      });
-                })
-                     .catch((err) => {
-                        
-
-                     })
+                     History.push
+                         ({
+                            pathname: '/institute/registration3',
+                             state: {
+                                 values: location.state.values,
+                                 values2: trimValues
+                              }
+                         });
             }
         });
     return (

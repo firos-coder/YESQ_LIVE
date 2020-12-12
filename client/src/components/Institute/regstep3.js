@@ -4,7 +4,13 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 export default function Regstep3() {
+    const location = useLocation()
+    useEffect(() => {
+                
+            }, [location]);
     const History = useHistory()
    
     const formik = useFormik
@@ -35,15 +41,19 @@ export default function Regstep3() {
                 const trimValues = { phone:phoneTrim,email:emailTrim,website:websiteTrim,Youtube:YoutubeTrim,
                     facebook: facebookTrim,instagram:instagramTrim,twitter:twitterTrim
                                    }
-                         console.log(trimValues)
-                 axios.post("", trimValues).then(response => {
+                const finalValues = {
+                    step1: location.state.values,
+                    step2: location.state.values2,
+                    step3: trimValues
+                         }
+                axios.post("/institute/registration", finalValues).then(response => {
                     
                     onSubmitprops.resetForm()
-                    //  history.push
-                    //      ({
-                    //         pathname: '/',
-                    //          state: { }
-                    //      });
+                     History.push
+                         ({
+                            pathname: '/instistute/verification',
+                             state: { }
+                         });
                 })
                      .catch((err) => {
                         
@@ -68,12 +78,12 @@ export default function Regstep3() {
                                 />
                             </div>
                            <div className="form-group">
-                                <label htmlFor="" className="input-label">Email</label>
+                                <label htmlFor="" className="input-label">Whatsapp</label>
                                 <input
-                                    type="email"
+                                    type="text"
                                     className="form-control signInPassword"
-                                    name="email"
-                                    id="email"
+                                    name="whatsapp"
+                                    id="whatsapp"
                                     {...formik.getFieldProps('email')}
                                 />
                             </div>

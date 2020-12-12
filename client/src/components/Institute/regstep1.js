@@ -57,19 +57,15 @@ export default function Regstep1() {
                                     contact_person: contact_personTrim,designation:designationTrim,password:passwordTrim,
                                     contact_number:contact_numberTrim}
                          console.log(trimValues)
-                 axios.post("", trimValues).then(response => {
                     
                     onSubmitprops.resetForm()
-                    //  history.push
-                    //      ({
-                    //         pathname: '/',
-                    //          state: { }
-                    //      });
-                })
-                     .catch((err) => {
-                        
-
-                     })
+                     History.push
+                         ({
+                            pathname: '/institute/registration2',
+                             state: {
+                                 values : trimValues
+                              }
+                         });
             }
         });
     return (
@@ -94,7 +90,7 @@ export default function Regstep1() {
                             <div className="form-group">
                                 <label htmlFor="" className="input-label">Display Name</label>
                                 <input
-                                    type="password"
+                                    type="text"
                                     className="form-control signInPassword"
                                     name="display_name"
                                     id="display_name"
