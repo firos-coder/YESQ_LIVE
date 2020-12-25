@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="102" height="105" viewBox="0 0 102 105">
+  <defs>
+    <filter id="Ellipse_10" x="0" y="0" width="102" height="105" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <linearGradient id="linear-gradient" x1="-0.589" x2="0.878" y2="1.38" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#0090ff"/>
+      <stop offset="1" stop-color="#cd118c"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_11" data-name="Group 11" transform="translate(-843 -389)">
+    <g transform="matrix(1, 0, 0, 1, 843, 389)" filter="url(#Ellipse_10)">
+      <circle id="Ellipse_10-2" data-name="Ellipse 10" cx="51" cy="51" r="51" fill="#fff"/>
+    </g>
+    <g id="Layer_14" data-name="Layer 14" transform="translate(870.042 416.037)">
+      <path id="Path_1100" data-name="Path 1100" d="M44.443,22.446H39.73V13.019a1.571,1.571,0,0,0-1.571-1.571H33.446V8.133l10.542,3.315a1.445,1.445,0,0,0,.456,0A1.588,1.588,0,1,0,44.9,8.306L24.475,2.021a1.791,1.791,0,0,0-.911,0L3.139,8.306a1.636,1.636,0,1,0,.911,3.142L14.593,8.133v3.315H9.879a1.571,1.571,0,0,0-1.571,1.571v9.427H3.595a1.571,1.571,0,0,0-1.571,1.571V44.441a1.571,1.571,0,0,0,1.571,1.571H44.443a1.571,1.571,0,0,0,1.571-1.571V24.017A1.571,1.571,0,0,0,44.443,22.446ZM30.3,7.175V17.732H17.735V7.175l6.284-1.932ZM5.166,25.588H8.308V42.87H5.166Zm6.284-1.571V14.59h3.142V19.3a1.571,1.571,0,0,0,1.571,1.571H31.875A1.571,1.571,0,0,0,33.446,19.3V14.59h3.142V42.87H31.875v-11A1.571,1.571,0,0,0,30.3,30.3H17.735a1.571,1.571,0,0,0-1.571,1.571v11H11.45ZM19.306,42.87V33.443h9.427V42.87Zm23.567,0H39.73V25.588h3.142Z" transform="translate(0)" fill="url(#linear-gradient)"/>
+      <path id="Path_1101" data-name="Path 1101" d="M14.571,11.284h1.571v1.571a1.571,1.571,0,1,0,3.142,0V11.284h1.571a1.571,1.571,0,1,0,0-3.142H19.284V6.571a1.571,1.571,0,1,0-3.142,0V8.142H14.571a1.571,1.571,0,1,0,0,3.142Z" transform="translate(6.306 1.735)" fill="url(#linear-gradient)"/>
+    </g>
+  </g>
+</svg>

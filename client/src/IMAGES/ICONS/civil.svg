@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="102" height="105" viewBox="0 0 102 105">
+  <defs>
+    <filter id="Ellipse_12" x="0" y="0" width="102" height="105" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <linearGradient id="linear-gradient" x1="-0.1" y1="-0.089" x2="0.651" y2="1.343" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#07f"/>
+      <stop offset="1" stop-color="#cd118c"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_12" data-name="Group 12" transform="translate(-1194 -389)">
+    <g transform="matrix(1, 0, 0, 1, 1194, 389)" filter="url(#Ellipse_12)">
+      <circle id="Ellipse_12-2" data-name="Ellipse 12" cx="51" cy="51" r="51" fill="#fff"/>
+    </g>
+    <path id="iconfinder_architecture-interior-06_809115" d="M42.214,22.025H34.873A12.769,12.769,0,0,0,22.025,9.177V5.506h7.342V0H20.189V9.361A12.842,12.842,0,0,0,9.177,22.025H1.835A1.734,1.734,0,0,0,0,23.86V44.05H44.05V23.86A1.734,1.734,0,0,0,42.214,22.025ZM22.025,1.835h5.506V3.671H22.025Zm0,11.012A9.088,9.088,0,0,1,31.2,22.025H12.848A9.088,9.088,0,0,1,22.025,12.848ZM12.848,40.379H9.177V33.037A1.734,1.734,0,0,1,11.012,31.2a1.734,1.734,0,0,1,1.835,1.835Zm5.506,0H14.683V33.037A1.734,1.734,0,0,1,16.519,31.2a1.734,1.734,0,0,1,1.835,1.835Zm5.506,0H20.189V33.037a1.835,1.835,0,1,1,3.671,0Zm5.506,0H25.7V33.037a1.835,1.835,0,1,1,3.671,0Zm5.506,0H31.2V33.037a1.835,1.835,0,0,1,3.671,0Zm5.506,0H36.708V33.037a3.682,3.682,0,0,0-3.671-3.671,3.9,3.9,0,0,0-2.753,1.285,3.9,3.9,0,0,0-2.753-1.285,3.9,3.9,0,0,0-2.753,1.285,3.9,3.9,0,0,0-2.753-1.285,3.9,3.9,0,0,0-2.753,1.285,3.9,3.9,0,0,0-2.753-1.285,3.9,3.9,0,0,0-2.753,1.285,3.9,3.9,0,0,0-2.753-1.285,3.682,3.682,0,0,0-3.671,3.671v7.342H3.671V25.7H40.379Z" transform="translate(1223 418)" fill="url(#linear-gradient)"/>
+  </g>
+</svg>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import '../Css/register.css'
-import Landing from '../Images/landing.svg'
+import '../CSS/register.css'
+import Landing from '../IMAGES/landing.svg'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'

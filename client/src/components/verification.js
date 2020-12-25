@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import OtpInput from 'react-otp-input';
-import '../Css/verification.css'
-import Landing from '../Images/landing.svg'
+import '../CSS/verification.css'
+import Landing from '../IMAGES/landing.svg'
 import axios from 'axios'
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
