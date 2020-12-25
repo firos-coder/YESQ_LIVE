@@ -7,12 +7,12 @@ import FilterCompwork from './Filter/filterCompwork'
 import FilterCompAminit from './Filter/filterCompAminit'
 import FilterCompPaymnt from './Filter/filterCompPaymnt'
 import Footer from './Footer/footer'
-import InstituteLayout from './HomeInstitutes/instituteLayout'
 import Body from './Body/body'
+import InstituteList from './HomeInstitutes/instituteList'
 
 
 
-export default class Home extends Component {
+export default class InstituteListing extends Component {
 	render() {
 		return (
 			<div>
@@ -27,10 +27,9 @@ export default class Home extends Component {
 					<FilterCompPaymnt/>
 
 					</Filter>
-					
-				<InstituteLayout />
-				</Body>
-				<Footer/>
+					<InstituteList />
+					</Body>
+				<Footer />
 			</div>
 		)
 	}

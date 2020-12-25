@@ -112,7 +112,7 @@ export default function Login() {
                                     </div>
                                     <button type="submit" className="btn_1 rounded full-width">SIGN IN</button>
                                     <div className="text-center add_top_10">
-                                        <p>You don't have an account?<span className='signup-link'><Link className='signup-link-clr' to='/'>Sign up!</Link></span> </p>
+                                        <p>You don't have an account?<span className='signup-link'><Link className='signup-link-clr' to='/user/signup'>Sign up!</Link></span> </p>
                                     </div>
                                 </form>
                             </aside>

@@ -36,7 +36,7 @@ export default function userexist() {
                                 <div className="newto-yesq-caption">
                                     <p style={style}>New to YESQ?</p>
                                     <ul className='pad-10'>
-                                        <li><Link to='/' className='signup-frgtpswd-link'>Create account with a different mobile number</Link></li>
+                                        <li><Link to='/user/signup' className='signup-frgtpswd-link'>Create account with a different mobile number</Link></li>
                                         
                                     </ul>
                                 </div>

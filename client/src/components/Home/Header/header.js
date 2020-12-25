@@ -60,8 +60,8 @@ export default class Header extends Component {
 									</div>
 									<div className="col-lg-3 col-12">
 										<ul id="top_menu">
-											<li><Link to="#">Sign In</Link></li>
-											<li><Link to="account.html" class="btn_1">Sign Up</Link></li>
+											<li><Link to="/login">Sign In</Link></li>
+											<li><Link to="/user/signup" class="btn_1">Sign Up</Link></li>
 											<li><Link to="#" className="right-nav"><i class="fa fa-bars"></i></Link></li>
 										</ul>
 									</div>

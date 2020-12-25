@@ -12,7 +12,8 @@ import Regstep1 from './components/Institute/regstep1'
 import Regstep2 from './components/Institute/regstep2'
 import Regstep3 from './components/Institute/regstep3'
 import Instverification from './components/Institute/instverification'
-import Home from '../src/components/Home/home';
+import Home from '../src/components/Home/home'
+import InstituteListing from './components/Home/istituteListing'
 
 export default class App extends Component {
  
@@ -23,14 +24,19 @@ export default class App extends Component {
         <Switch>
           
           <Route exact path="/">
+            <Home />
+          </Route>
+
+          <Route path="/user/signup">
             <Register />
+          </Route>
+
+          <Route path="/institute/listing">
+            <InstituteListing />
           </Route>
   
           <Route path="/login">
             <Login />
-          </Route>
-          <Route path="/home">
-            <Home />
           </Route>
   
           <Route path="/forgot">
