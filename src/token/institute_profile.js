@@ -88,7 +88,18 @@ const instituteRegister = async (connection, userData,callback) =>
         callback(undefined, result)
     })
 }
+const instituteListing = async (connection, callback) => {
+    const request = new sql.Request(connection)
+    request.input('MODE',sql.NVarChar(50), 'SELECTALL')
+    await request.execute('YESQTOCKENSDEV.dbo.INSTITUTEACCOUNT_STP', (error, result) => {
+        if (error) {
+            callback(error, undefined)
+        }
+        callback(undefined, result)
+    })
+}
 
 module.exports = {
-    instituteRegister
+    instituteRegister,
+    instituteListing
 }

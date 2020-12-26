@@ -1,6 +1,6 @@
 const sql = require('mssql')
 const app = require('../../app')
-const {instituteRegister} = require('../token/institute_profile')
+const {instituteRegister, instituteListing} = require('../token/institute_profile')
 
 module.exports = function (app, connection)
 {
@@ -13,6 +13,17 @@ module.exports = function (app, connection)
                 console.log(error);
             }
             console.log(response);
+        })
+    })
+
+    app.post('/institute/listing', async (req, res) => {
+        await instituteListing(connection, (error, result) =>
+        {
+            if (error)
+            {
+                res.status(400).json("Can't load institutes")
+            }
+            res.status(200).json(result.recordset)
         })
     })
 }
