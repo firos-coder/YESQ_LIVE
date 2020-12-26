@@ -25,11 +25,14 @@ export default class Home extends Component {
 					<FilterCompwork/>
 					<FilterCompAminit/>
 					<FilterCompPaymnt/>
+					
 
 					</Filter>
 					
-				<InstituteLayout />
-				</Body>
+					<InstituteLayout />
+					</Body>
+				
+				
 				<Footer/>
 			</div>
 		)

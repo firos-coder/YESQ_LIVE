@@ -5,8 +5,7 @@ import { Link } from "react-router-dom";
 
 export default function InstituteList(props) {
   return (
-    <div class="col-lg-10">
-      <div class="row mt-50">
+   
         <div class="col-md-3">
           <div class="strip grid">
             <figure>
@@ -18,7 +17,7 @@ export default function InstituteList(props) {
             <div class="wrapper">
               <h3>
                 <a href="detail-restaurant.html">
-                  {/* SBI MANACHIRA */}
+                  
                   {props.name}
                   </a>
               </h3>
@@ -50,7 +49,6 @@ export default function InstituteList(props) {
             </ul>
           </div>
         </div>
-      </div>
-    </div>
+      
   );
 }
