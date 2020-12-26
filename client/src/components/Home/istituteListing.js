@@ -8,7 +8,7 @@ import FilterCompAminit from './Filter/filterCompAminit'
 import FilterCompPaymnt from './Filter/filterCompPaymnt'
 import Footer from './Footer/footer'
 import Body from './Body/body'
-import InstituteList from './HomeInstitutes/instituteList'
+import InstituteLists from './HomeInstitutes/InstituteLists'
 
 
 
@@ -26,8 +26,8 @@ export default class InstituteListing extends Component {
 					<FilterCompAminit/>
 					<FilterCompPaymnt/>
 
-					</Filter>
-					<InstituteList />
+				</Filter>
+					<InstituteLists />
 					</Body>
 				<Footer />
 			</div>
