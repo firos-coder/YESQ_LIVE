@@ -14,6 +14,7 @@ import Regstep3 from './components/Institute/regstep3'
 import Instverification from './components/Institute/instverification'
 import Home from '../src/components/Home/home'
 import InstituteListing from './components/Home/istituteListing'
+import InstituteHome from './components/Home/instituteHome'
 
 export default class App extends Component {
  
@@ -33,6 +34,9 @@ export default class App extends Component {
 
           <Route path="/institute/listing">
             <InstituteListing />
+          </Route>
+          <Route path="/institute/home">
+            <InstituteHome />
           </Route>
   
           <Route path="/login">
