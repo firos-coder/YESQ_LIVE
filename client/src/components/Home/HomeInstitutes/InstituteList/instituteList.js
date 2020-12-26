@@ -42,9 +42,10 @@ export default function InstituteList(props) {
                 </a>
               </li> */}
               <li>
-                <a href="#0" class="btn btn-success col-md-12">
+                <button class="btn btn-success col-md-12"
+                onClick={props.clicked}>
                   TOKEN
-                </a>
+                </button>
               </li>
             </ul>
           </div>

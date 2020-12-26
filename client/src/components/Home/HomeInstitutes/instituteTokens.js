@@ -1,35 +1,29 @@
 import React,{Fragment} from 'react'
 import '../Css/home.css'
 import { Link } from 'react-router-dom'
+import { useEffect } from "react"
+import { useLocation } from "react-router-dom"
 
-export default function InstituteLayout() {
+export default function  InstituteHome() {
+	const location = useLocation();
+    useEffect(() => {
+                
+            }, [location]);
   return (
       <div class="col-lg-10">
+		<div class="white-bg">
+			<div class="row">
+				<div class="col-12">
+					<div class="row">
+						<div class="col-md-6 token-form-top">
+							<h3>{location.state.item.DISPLAYNAME} <a href="#"><i class="icon_map_alt font-15"></i></a></h3>
+								<a class="address"><i class="fa fa-map-marker"></i>{location.state.item.DISTRICT}</a>
+								<a class="address"><i class="fa fa-clock-o"></i>{location.state.item.WEBSITE}</a>
+								<a class="address"><i class="fa fa-mobile"></i>{location.state.item.MOBILE}</a>
+						</div>
 
-
-						<div class="white-bg">
-							<div class="row">
-								<div class="col-12">
-
-
-									<div class="row">
-										<div class="col-md-6 token-form-top">
-
-
-
-											<h3>SBI MANACHIRA <a href="#"><i class="icon_map_alt font-15"></i></a></h3>
-
-
-											<a class="address"><i class="icon_pin_alt"></i>Calicut, Arayadath Palam</a>
-											<a class="address"><i class="icon_clock_alt"></i>9 AM to 5 PM</a>
-											<a class="address"><i class="icon_mobile"></i>+91 987 654 32 10</a>
-
-
-
-										</div>
-
-									</div>
-									<hr />
+					</div>
+					<hr />
 									<div class="row">
               <div class="col-md-6 text-left">
 											<h4>Today</h4>

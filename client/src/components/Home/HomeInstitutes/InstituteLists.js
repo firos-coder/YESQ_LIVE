@@ -1,34 +1,46 @@
-import React, { Component,Fragment } from 'react'
+import React, {  useState } from 'react'
 import InstituteList from './InstituteList/instituteList'
 import axios from 'axios'
+import { useHistory } from 'react-router-dom'
 
-export default class InstituteLists extends Component {
-    constructor(props){
-        super(props)
-        this.state={
-            institute : []
-        }
+import { useEffect } from "react";
 
-    }
-    componentDidMount(){
+export default function InstituteLists() {
+    const [institute, setInstitute] = useState([])
+    const History = useHistory();
+    useEffect(() => {
         axios.post('/institute/listing').then(response=>{
-            this.setState({institute:response.data})
+            setInstitute(response.data)
            console.log(response.data)
+       
         });
+    } ,[]);
+    const tokenBookHandler=(item)=>{
+        History.push
+                    ({
+                        pathname: '/institute/home',
+                        state:
+                        {
+                            item:item
+                        }
+                    })
+
     }
-    render() {
-        
+    
+    
+       
         return (
             <div class="col-lg-10">
                 <div class="row mt-50">
                 
-                    {this.state.institute.map((item,key)=>{
+                    {institute.map((item,key)=>{
                     return(
                     <InstituteList 
                     name={item.DISPLAYNAME}
                     location={item.DISTRICT}
                     website={item.WEBSITE}
-                    mobile={item.MOBILE}/>
+                    mobile={item.MOBILE}
+                    clicked={()=>tokenBookHandler(item)}/>
                     )
                
                  })}
@@ -42,7 +54,59 @@ export default class InstituteLists extends Component {
            
            
         )
-    }
+    
+        
 }
+
+
+// export default class InstituteLists extends Component {
+    
+//     constructor(props){
+//         super(props)
+//         this.state={
+//             institute : []
+//         }
+       
+
+//     }
+//     componentDidMount(){
+//         axios.post('/institute/listing').then(response=>{
+//             this.setState({institute:response.data})
+//            console.log(response.data)
+//         });
+//     }
+//     tokenBookHandler=()=>{
+//         history.push('/institute/home')
+
+//     }
+//     render() {
+        
+//         return (
+//             <div class="col-lg-10">
+//                 <div class="row mt-50">
+                
+//                     {this.state.institute.map((item,key)=>{
+//                     return(
+//                     <InstituteList 
+//                     name={item.DISPLAYNAME}
+//                     location={item.DISTRICT}
+//                     website={item.WEBSITE}
+//                     mobile={item.MOBILE}
+//                     clicked={this.tokenBookHandler}/>
+//                     )
+               
+//                  })}
+//                 </div>
+//             </div>
+
+           
+
+                
+          
+           
+           
+//         )
+//     }
+// }
 
 
